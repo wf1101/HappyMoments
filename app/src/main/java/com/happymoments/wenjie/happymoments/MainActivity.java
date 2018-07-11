@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -20,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     private int mRateValue;
     private Date mDate;
     private EditText mTextMoment;
+    private DatabaseReference mDatabase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         mTextMoment = findViewById(R.id.text_moment);
         String textMoment = mTextMoment.getText().toString();
 
-        ArrayList<String> tagsList = new ArrayList<String>();
+        ArrayList<String> tagsList = new ArrayList<>();
         // TODO: 7/11/18 how to find all checked boxes
         CheckBox boxFamily = findViewById(R.id.box_family);
         if (boxFamily.isChecked()){
@@ -85,6 +90,5 @@ public class MainActivity extends AppCompatActivity {
 
 
         Moment newMoment = new Moment(mDate, mRateValue, tagsList, textMoment);
-
     }
 }
