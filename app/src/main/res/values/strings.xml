@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Happy Moments</string>
+    <string name="home">home</string>
+    <string name="profile">profile</string>
+    <string name="seekbar_text">Rate your happiness level</string>
+    <string name="date">today</string>
+    <string name="food">Food</string>
+    <string name="family">Family</string>
+    <string name="books">Book</string>
+    <string name="display_moment">...Write down you happy moment</string>
+
+</resources>
