@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private int mRateValue;
     private Date mDate;
     private EditText mTextMoment;
+    private Button mSendBtn;
     private DatabaseReference mDatabase;
 
 
@@ -62,33 +64,45 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // create a new Moment object takes four parameters
-        // @param Date mDate
-        // @param int mRateValue
-        // @param ArrayList<String> tagsList
-        // @param String mTextMoment
-        mDate = new Date();
-        mTextMoment = findViewById(R.id.text_moment);
-        String textMoment = mTextMoment.getText().toString();
+        // click send button to send data to database
+        mSendBtn = findViewById(R.id.send_btn);
+        mSendBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        ArrayList<String> tagsList = new ArrayList<>();
-        // TODO: 7/11/18 how to find all checked boxes
-        CheckBox boxFamily = findViewById(R.id.box_family);
-        if (boxFamily.isChecked()){
-            tagsList.add(boxFamily.getText().toString());
-        }
+                // create a new Moment object takes four parameters
+                // @param Date mDate
+                // @param int mRateValue
+                // @param ArrayList<String> tagsList
+                // @param String mTextMoment
+                mDate = new Date();
+                mTextMoment = findViewById(R.id.text_moment);
+                String textMoment = mTextMoment.getText().toString();
 
-        CheckBox boxBooks = findViewById(R.id.box_books);
-        if (boxBooks.isChecked()){
-            tagsList.add(boxBooks.getText().toString());
-        }
+                ArrayList<String> tagsList = new ArrayList<>();
+                // TODO: 7/11/18 how to find all checked boxes
+                CheckBox boxFamily = findViewById(R.id.box_family);
+                if (boxFamily.isChecked()){
+                    tagsList.add(boxFamily.getText().toString());
+                }
 
-        CheckBox boxFood = findViewById(R.id.box_food);
-        if (boxFood.isChecked()){
-            tagsList.add(boxFood.getText().toString());
-        }
+                CheckBox boxBooks = findViewById(R.id.box_books);
+                if (boxBooks.isChecked()){
+                    tagsList.add(boxBooks.getText().toString());
+                }
 
+                CheckBox boxFood = findViewById(R.id.box_food);
+                if (boxFood.isChecked()){
+                    tagsList.add(boxFood.getText().toString());
+                }
 
-        Moment newMoment = new Moment(mDate, mRateValue, tagsList, textMoment);
+                // create a new instance of Moment
+                Moment newMoment = new Moment(mDate, mRateValue, tagsList, textMoment);
+
+                // write the object to database
+                mDatabase = FirebaseDatabase.getInstance().getReference().child("moment");
+                mDatabase.push().setValue(newMoment);
+            }
+        });
     }
 }
