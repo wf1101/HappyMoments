@@ -1,7 +1,9 @@
 package com.happymoments.wenjie.happymoments;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,12 +12,16 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.firebase.ui.auth.AuthUI;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,13 +31,51 @@ public class MainActivity extends AppCompatActivity {
     private Date mDate;
     private EditText mTextMoment;
     private Button mSendBtn;
+
+    // Firebase instance variables
     private DatabaseReference mDatabase;
+    private FirebaseAuth mAuth;
+    private FirebaseUser mUser;
+    private FirebaseAuth.AuthStateListener mAuthStateListener;
+
+    private static final int RC_SIGN_IN = 1;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // add action bar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.action_bar);
+        setSupportActionBar(toolbar);
+
+        // Initialize Firebase components
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("moment");
+
+
+        mAuth = FirebaseAuth.getInstance();
+        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                mUser = firebaseAuth.getCurrentUser();
+                if (mUser != null){
+                    // user is signed in
+                    Toast.makeText(MainActivity.this, "You're now signed in! Welcome!", Toast.LENGTH_SHORT).show();
+                } else {
+                    // user is signed out
+                    startActivityForResult(
+                            AuthUI.getInstance()
+                                    .createSignInIntentBuilder()
+                                    .setIsSmartLockEnabled(false)
+                                    .setAvailableProviders(Arrays.asList(
+                                            new AuthUI.IdpConfig.EmailBuilder().build()))
+                                    .build(),
+                            RC_SIGN_IN);
+                }
+            }
+        };
+
 
         // click profile button and go to profile screen
         final Button profileBtn = findViewById(R.id.profile_btn);
@@ -100,9 +144,37 @@ public class MainActivity extends AppCompatActivity {
                 Moment newMoment = new Moment(mDate, mRateValue, tagsList, textMoment);
 
                 // write the object to database
-                mDatabase = FirebaseDatabase.getInstance().getReference().child("moment");
                 mDatabase.push().setValue(newMoment);
             }
         });
+
+
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mAuth.removeAuthStateListener(mAuthStateListener);
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        mAuth.addAuthStateListener(mAuthStateListener);
+    }
+
+    // the back button can close the app
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RC_SIGN_IN ){
+            if (resultCode == RESULT_OK) {
+                Toast.makeText(this, "Signed in!", Toast.LENGTH_SHORT).show();
+            } else if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(this, "Sign in canceld!", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
     }
 }
