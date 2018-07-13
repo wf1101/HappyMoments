@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
         // logic for seekBar to display progress level out of 10
         mSeekBar = findViewById(R.id.seek_bar_rate);
         mTextRate = findViewById(R.id.text_display_rate);
+        final String originalRateDisplayText = mTextRate.getText().toString();
         mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -148,6 +149,9 @@ public class MainActivity extends AppCompatActivity {
 
                 // write the object to database
                 mDatabase.push().setValue(newMoment);
+                mTextRate.setText(originalRateDisplayText);
+                mTextMoment.setText("");
+
             }
         });
 
@@ -202,7 +206,6 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-
 
     }
 
