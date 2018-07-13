@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "248665493738",
+    "firebase_url": "https://happymoments-51ef5.firebaseio.com",
+    "project_id": "happymoments-51ef5",
+    "storage_bucket": "happymoments-51ef5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:248665493738:android:f1f245590f5cef96",
+        "android_client_info": {
+          "package_name": "com.happymoments.wenjie.happymoments"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "248665493738-5h6ko4shpop3u8void0lja26kf2r6hee.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.happymoments.wenjie.happymoments",
+            "certificate_hash": "da255aa7aca206b7f53d87625e15e060e7562d96"
+          }
+        },
+        {
+          "client_id": "248665493738-9ub56qcfq2mg4jujstf7bafhjg7lkuj9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMWQZT2cK5kHBCGByjwdMs7w29Avf4sZk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "248665493738-9ub56qcfq2mg4jujstf7bafhjg7lkuj9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
