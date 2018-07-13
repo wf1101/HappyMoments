@@ -14,6 +14,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.auth.AuthUI;
+import com.firebase.ui.auth.data.client.AuthUiInitProvider;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -27,8 +29,11 @@ public class LoginActivity extends AppCompatActivity {
     private Button mLoginBtn;
     private Button mSignUpBtn;
     private TextView mStatus;
+
+    // Firebase variable
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
+    private FirebaseAuth.AuthStateListener mAuthStateListener;
 
 
     @Override
@@ -42,6 +47,22 @@ public class LoginActivity extends AppCompatActivity {
         mSignUpBtn = findViewById(R.id.sign_up_btn);
         mStatus = findViewById(R.id.status_text);
         mAuth = FirebaseAuth.getInstance();
+//        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
+//            @Override
+//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+//                mUser = firebaseAuth.getCurrentUser();
+//                if (mUser != null){
+//                    // user is signed in
+//                } else {
+//                    // user is signed out
+//                    startActivityForResult(
+//                            AuthUI.getInstance().createSignInIntentBuilder().setProviders(
+//                                    AuthUI.EMAIL_PROV
+//                            )
+//                    );
+//                }
+//            }
+//        };
 
     }
 
@@ -147,5 +168,17 @@ public class LoginActivity extends AppCompatActivity {
 
         Intent homeIntent = new Intent(this, MainActivity.class);
         startActivity(homeIntent);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mAuth.removeAuthStateListener(mAuthStateListener);
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        mAuth.addAuthStateListener(mAuthStateListener);
     }
 }

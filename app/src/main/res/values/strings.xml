@@ -7,6 +7,13 @@
     <string name="food">Food</string>
     <string name="family">Family</string>
     <string name="books">Book</string>
-    <string name="display_moment">...Write down you happy moment</string>
+    <string name="display_moment">...</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_up">Sign up</string>
+    <string name="auth_failed">Failed to login</string>
 
 </resources>
