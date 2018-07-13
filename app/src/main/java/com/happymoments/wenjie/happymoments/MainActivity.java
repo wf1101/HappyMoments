@@ -54,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         // Initialize Firebase components
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("moment");
+        String childComponent = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        mDatabase = FirebaseDatabase.getInstance().getReference().child(childComponent);
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -112,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // click send button to send data to database
+        // click send button to create a new data entry to database
         mSendBtn = findViewById(R.id.send_btn);
         mSendBtn.setOnClickListener(new View.OnClickListener() {
             @Override

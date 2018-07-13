@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -79,7 +80,8 @@ public class ProfileActivity extends AppCompatActivity {
             }
         };
 
-        mDataReference = FirebaseDatabase.getInstance().getReference().child("moment");
+        String childComponent = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        mDataReference = FirebaseDatabase.getInstance().getReference().child(childComponent);
         mDataReference.addChildEventListener(mChildEventListener);
 
     }
