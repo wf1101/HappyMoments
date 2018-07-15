@@ -20,4 +20,6 @@
     <!--Strings related to action bar-->
     <string name="log_out">Log out</string>
 
+    <!--Strings in profile activity-->
+    <string name="arrow">>></string>
 </resources>

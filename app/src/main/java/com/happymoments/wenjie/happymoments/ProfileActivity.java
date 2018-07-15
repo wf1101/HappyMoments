@@ -19,6 +19,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,12 +30,22 @@ public class ProfileActivity extends AppCompatActivity {
     private ListView mMomentList;
     private DatabaseReference mDataReference;
     private ChildEventListener mChildEventListener;
+    private String mUserName;
+    private String mUserEmail;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        // initialize and display current user name and email
+        mUserName = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+        mUserEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+        TextView name = findViewById(R.id.user_name);
+        TextView email = findViewById(R.id.user_email);
+        name.setText(mUserName);
+        email.setText(mUserEmail);
 
         // click home button and go to home screen
         final Button homeBtn = findViewById(R.id.home_btn);
