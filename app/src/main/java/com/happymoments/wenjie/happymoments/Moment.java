@@ -1,5 +1,7 @@
 package com.happymoments.wenjie.happymoments;
 
+import android.net.Uri;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -9,16 +11,18 @@ public class Moment {
     private int mHappinessLevel;
     private ArrayList<String> mCheckbox;
     private Date mDate;
+    private String mPhotoUrl;
 
     // default constructor takes no parameters - for firebase purpose
     public Moment() {
     }
 
-    public Moment(Date date, int happinessLevel, ArrayList<String> checkbox, String editText) {
+    public Moment(Date date, int happinessLevel, ArrayList<String> checkbox, String editText, String photoUrl) {
         mDate = date;
         mHappinessLevel = happinessLevel;
         mCheckbox = checkbox;
         mEditText = editText;
+        mPhotoUrl = photoUrl;
     }
 
     public int getmHappinessLevel() {
@@ -37,5 +41,8 @@ public class Moment {
         return mDate;
     }
 
+    public String getmPhotoUrl() {
+        return mPhotoUrl;
+    }
 
 }

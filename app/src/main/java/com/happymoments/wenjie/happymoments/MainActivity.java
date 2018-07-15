@@ -1,6 +1,7 @@
 package com.happymoments.wenjie.happymoments;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -13,35 +14,49 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
+    // Moment object parameters
     private SeekBar mSeekBar;
     private TextView mTextRate;
     private int mRateValue;
     private Date mDate;
     private EditText mTextMoment;
+    private String mPhotoUrl;
+    private String mCurrentUserUid;
+
+
     private Button mSendBtn;
+    private Button mPhotoPickedBtn;
+
 
     // Firebase instance variables
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
+    private StorageReference mStorage;
 
-    private static final int RC_SIGN_IN = 1;
+    public static final int RC_SIGN_IN = 1;
+    private static final int RC_PHOTO_PICKER = 2;
 
 
     @Override
@@ -53,11 +68,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.action_bar);
         setSupportActionBar(toolbar);
 
-        // Initialize Firebase components
-        String childComponent = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        mDatabase = FirebaseDatabase.getInstance().getReference().child(childComponent);
 
-
+        // check if user is logged in
         mAuth = FirebaseAuth.getInstance();
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -65,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 mUser = firebaseAuth.getCurrentUser();
                 if (mUser != null){
                     // user is signed in
+                    mCurrentUserUid = mUser.getUid();
                     Toast.makeText(MainActivity.this, "You're now signed in! Welcome!", Toast.LENGTH_SHORT).show();
                 } else {
                     // user is signed out
@@ -79,6 +92,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
+
+        // Initialize Firebase components
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mStorage = FirebaseStorage.getInstance().getReference();
 
 
         // click profile button and go to profile screen
@@ -113,7 +130,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // click send button to create a new data entry to database
+         // click imagePickedButton to pick a picture
+        mPhotoPickedBtn =findViewById(R.id.photo_picker_btn);
+        mPhotoPickedBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent imageIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                imageIntent.setType("image/jpeg");
+                imageIntent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
+                startActivityForResult(Intent.createChooser(imageIntent, "completing action using"), RC_PHOTO_PICKER);
+            }
+        });
+
+         // click send button to create a new data entry to database
         mSendBtn = findViewById(R.id.send_btn);
         mSendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,16 +175,16 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 // create a new instance of Moment
-                Moment newMoment = new Moment(mDate, mRateValue, tagsList, textMoment);
+                mPhotoUrl = "https://firebasestorage.googleapis.com/v0/b/happymoments-51ef5.appspot.com/o/FYF-870.jpg?alt=media&token=fbc37fe8-fa73-45c2-9061-faece5ee9e7e";
+                Moment newMoment = new Moment(mDate, mRateValue, tagsList, textMoment, mPhotoUrl);
 
                 // write the object to database
-                mDatabase.push().setValue(newMoment);
+                mDatabase.child(mCurrentUserUid).push().setValue(newMoment);
                 mTextRate.setText(originalRateDisplayText);
                 mTextMoment.setText("");
 
             }
         });
-
 
 
     }
@@ -176,13 +205,32 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RC_SIGN_IN ){
+        if (requestCode == RC_SIGN_IN ) {
             if (resultCode == RESULT_OK) {
+                // sign-in success, set up the UI
                 Toast.makeText(this, "Signed in!", Toast.LENGTH_SHORT).show();
             } else if (resultCode == RESULT_CANCELED) {
+                // sign-in canceled by user, finish activity, close app
                 Toast.makeText(this, "Sign in canceld!", Toast.LENGTH_SHORT).show();
                 finish();
             }
+        } else if (resultCode == RC_PHOTO_PICKER && resultCode == RESULT_OK) {
+            // picked image success, then store data
+            Uri selectedImage = data.getData();
+
+            // get a reference to store file at user_UID/<filename>
+            StorageReference photoRef = mStorage.child(mCurrentUserUid).child(selectedImage.getLastPathSegment());
+
+            // upload file to firebase storage
+            photoRef.putFile(selectedImage).addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                    toastMessage("Upload done!");
+//                        mPhotoUrl = taskSnapshot.getDownloadUrl();
+                }
+            });
+
         }
     }
 

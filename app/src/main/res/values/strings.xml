@@ -8,6 +8,7 @@
     <string name="family">Family</string>
     <string name="books">Book</string>
     <string name="display_moment">...</string>
+    <string name="image">+ Photo</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>

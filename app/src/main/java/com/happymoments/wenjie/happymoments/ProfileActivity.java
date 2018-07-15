@@ -30,7 +30,6 @@ public class ProfileActivity extends AppCompatActivity {
     private ChildEventListener mChildEventListener;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
