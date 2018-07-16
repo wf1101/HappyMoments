@@ -5,19 +5,27 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,12 +36,26 @@ public class ProfileActivity extends AppCompatActivity {
     private ListView mMomentList;
     private DatabaseReference mDataReference;
     private ChildEventListener mChildEventListener;
+    private String mUserName;
+    private String mUserEmail;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        // add action bar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.action_bar);
+        setSupportActionBar(toolbar);
+
+        // initialize and display current user name and email
+        mUserName = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+        mUserEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+        TextView name = findViewById(R.id.user_name);
+        TextView email = findViewById(R.id.user_email);
+        name.setText(mUserName);
+        email.setText(mUserEmail);
 
         // click home button and go to home screen
         final Button homeBtn = findViewById(R.id.home_btn);
@@ -44,6 +66,17 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(homeIntent);
             }
         });
+
+        // click arrow button and go to setting page
+        final Button settingBtn = findViewById(R.id.go_setting);
+        settingBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent settingIntent = new Intent(ProfileActivity.this, SettingActivity.class);
+                startActivity(settingIntent);
+            }
+        });
+
 
         // Initialize message ListView and its adapter
         mMomentList = findViewById(R.id.moment_list);
@@ -83,5 +116,35 @@ public class ProfileActivity extends AppCompatActivity {
         mDataReference = FirebaseDatabase.getInstance().getReference().child(childComponent);
         mDataReference.addChildEventListener(mChildEventListener);
 
+    }
+
+
+    // toolbar options
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+    // Add log out function - use Firebase UI
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        toastMessage("log out");
+        switch (item.getItemId()){
+            case R.id.log_out:
+                // sign out
+                AuthUI.getInstance().signOut(this);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+
+    private void toastMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

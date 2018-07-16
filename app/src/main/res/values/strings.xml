@@ -20,4 +20,10 @@
     <!--Strings related to action bar-->
     <string name="log_out">Log out</string>
 
+    <!--Strings in profile activity-->
+    <string name="arrow">>></string>
+
+    <!--Strings in setting activity-->
+    <string name="setting_name">Name</string>
+    <string name="setting_email">Email</string>
 </resources>
