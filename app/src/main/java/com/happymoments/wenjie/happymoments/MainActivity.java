@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int RC_SIGN_IN = 1;
     private static final int RC_PHOTO_PICKER = 2;
 
+//    private ArrayList<String> mTagList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
         // add action bar
         Toolbar toolbar = (Toolbar) findViewById(R.id.action_bar);
         setSupportActionBar(toolbar);
+
+        // initialize tage list
 
 
         // check if user is logged in
@@ -97,16 +100,8 @@ public class MainActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mStorage = FirebaseStorage.getInstance().getReference();
 
+        // Initialize buttons
 
-        // click profile button and go to profile screen
-        final Button profileBtn = findViewById(R.id.profile_btn);
-        profileBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent profileIntent = new Intent(MainActivity.this, ProfileActivity.class);
-                startActivity(profileIntent);
-            }
-        });
 
         // logic for seekBar to display progress level out of 10
         mSeekBar = findViewById(R.id.seek_bar_rate);
@@ -159,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
 
                 ArrayList<String> tagsList = new ArrayList<>();
                 // TODO: 7/11/18 how to find all checked boxes
+
                 CheckBox boxFamily = findViewById(R.id.box_family);
                 if (boxFamily.isChecked()){
                     tagsList.add(boxFamily.getText().toString());
@@ -174,6 +170,8 @@ public class MainActivity extends AppCompatActivity {
                     tagsList.add(boxFood.getText().toString());
                 }
 
+
+
                 // create a new instance of Moment
                 mPhotoUrl = "https://firebasestorage.googleapis.com/v0/b/happymoments-51ef5.appspot.com/o/FYF-870.jpg?alt=media&token=fbc37fe8-fa73-45c2-9061-faece5ee9e7e";
                 Moment newMoment = new Moment(mDate, mRateValue, tagsList, textMoment, mPhotoUrl);
@@ -188,6 +186,19 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    // click profile button and go to profile screen
+    public void goToProfile (View v) {
+        Intent profileIntent = new Intent(this, ProfileActivity.class);
+        startActivity(profileIntent);
+    }
+
+    // click more button to go to checkbox screen
+    public void goToMoreCheckbox(View v) {
+        Intent checkboxIntent = new Intent(this, CheckboxActivity.class);
+        startActivity(checkboxIntent);
+    }
+
 
     @Override
     protected void onPause() {

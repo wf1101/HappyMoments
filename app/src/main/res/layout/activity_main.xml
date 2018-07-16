@@ -116,6 +116,7 @@
             android:id="@+id/more_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="goToMoreCheckbox"
             android:text="more"
             android:textAppearance="@style/TextAppearance.AppCompat" />
     </LinearLayout>
@@ -197,6 +198,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="goToProfile"
             android:text="@string/profile"
             android:textSize="14sp" />
     </LinearLayout>
