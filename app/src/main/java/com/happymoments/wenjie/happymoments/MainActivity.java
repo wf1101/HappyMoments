@@ -214,21 +214,22 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Sign in canceld!", Toast.LENGTH_SHORT).show();
                 finish();
             }
-        } else if (resultCode == RC_PHOTO_PICKER && resultCode == RESULT_OK && data != null && data.getData() != null ) {
+        } else if (requestCode == RC_PHOTO_PICKER && resultCode == RESULT_OK && data != null && data.getData() != null ) {
             // picked image success, then store data
             Uri selectedImage = data.getData();
 
             // get a reference to store file at user_UID/<filename>
             StorageReference photoRef = mStorage.child(mCurrentUserUid).child(selectedImage.getLastPathSegment());
-
+    
             // upload file to firebase storage
+            // TODO: 7/16/18  Cannot upload imgae to firebase 
             photoRef.putFile(selectedImage)
                     .addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
                             toastMessage("Upload done!");
-        //                        mPhotoUrl = taskSnapshot.getDownloadUrl();
+//                                mPhotoUrl = taskSnapshot.getDownloadUrl();
                         }
                     });
         }
