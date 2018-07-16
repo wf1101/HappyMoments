@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 if (mUser != null){
                     // user is signed in
                     mCurrentUserUid = mUser.getUid();
-                    Toast.makeText(MainActivity.this, "You're now signed in! Welcome!", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(MainActivity.this, "You're now signed in! Welcome!", Toast.LENGTH_SHORT).show();
                 } else {
                     // user is signed out
                     startActivityForResult(
@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent imageIntent = new Intent(Intent.ACTION_GET_CONTENT);
                 imageIntent.setType("image/jpeg");
-                imageIntent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
+//                imageIntent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
                 startActivityForResult(Intent.createChooser(imageIntent, "completing action using"), RC_PHOTO_PICKER);
             }
         });
@@ -214,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Sign in canceld!", Toast.LENGTH_SHORT).show();
                 finish();
             }
-        } else if (resultCode == RC_PHOTO_PICKER && resultCode == RESULT_OK) {
+        } else if (resultCode == RC_PHOTO_PICKER && resultCode == RESULT_OK && data != null && data.getData() != null ) {
             // picked image success, then store data
             Uri selectedImage = data.getData();
 
@@ -222,15 +222,15 @@ public class MainActivity extends AppCompatActivity {
             StorageReference photoRef = mStorage.child(mCurrentUserUid).child(selectedImage.getLastPathSegment());
 
             // upload file to firebase storage
-            photoRef.putFile(selectedImage).addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+            photoRef.putFile(selectedImage)
+                    .addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                    toastMessage("Upload done!");
-//                        mPhotoUrl = taskSnapshot.getDownloadUrl();
-                }
-            });
-
+                            toastMessage("Upload done!");
+        //                        mPhotoUrl = taskSnapshot.getDownloadUrl();
+                        }
+                    });
         }
     }
 
