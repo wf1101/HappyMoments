@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 if (mUser != null){
                     // user is signed in
                     mCurrentUserUid = mUser.getUid();
-                    Toast.makeText(MainActivity.this, "You're now signed in! Welcome!", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(MainActivity.this, "You're now signed in! Welcome!", Toast.LENGTH_SHORT).show();
                 } else {
                     // user is signed out
                     startActivityForResult(
