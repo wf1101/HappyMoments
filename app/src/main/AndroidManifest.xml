@@ -35,7 +35,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".WordCloudActivity"></activity>
+        <activity android:name=".WordCloudActivity" />
+        <activity android:name=".BarChart"></activity>
     </application>
 
 </manifest>
