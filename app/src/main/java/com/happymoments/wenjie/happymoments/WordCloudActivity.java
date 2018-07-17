@@ -39,6 +39,8 @@ public class WordCloudActivity extends AppCompatActivity {
         for (String w: mWords) {
         }
 
+//        String[] out = (String[]) (in.subList(0, n)).toArray();
+//        wordCloud = (String[]) (mWords.subList(0, 20)).toArray();
         wordCloud = mWords.toArray(new String[mWords.size()]);
 //        wordCloud = new String[]{ "Donut", "Eclair", "Froyo", "Gingerbread", "Honeycomb",
 //                "Ice Cream Sandwich", "Jelly Bean", "KitKat", "love", "Alex", "my", "hubby", "Lollipop", "Marshmallow"};

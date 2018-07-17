@@ -141,6 +141,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
+
          // click send button to create a new data entry to database
         mSendBtn = findViewById(R.id.send_btn);
         mSendBtn.setOnClickListener(new View.OnClickListener() {
@@ -189,7 +192,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
     // click profile button and go to profile screen
@@ -198,10 +200,14 @@ public class MainActivity extends AppCompatActivity {
         startActivity(profileIntent);
     }
 
-    // click more button to go to checkbox screen
+    // click more button to go to checkbox layout
     public void goToMoreCheckbox(View v) {
-        Intent checkboxIntent = new Intent(this, CheckboxActivity.class);
-        startActivity(checkboxIntent);
+        setContentView(R.layout.activity_checkbox);
+    }
+
+    // click save button to go back to home layout
+    public void goBackHome (View v) {
+        setContentView(R.layout.activity_main);
     }
 
 
