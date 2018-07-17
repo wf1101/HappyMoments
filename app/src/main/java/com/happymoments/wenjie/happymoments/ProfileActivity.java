@@ -78,6 +78,18 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
 
+        // click wordcloud btn to go to word cloud screen
+        final Button wordCloudBtn = findViewById(R.id.word_cloud_btn);
+        wordCloudBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent wordIntent = new Intent(ProfileActivity.this, WordCloudActivity.class);
+                wordIntent.putExtra("word", "123");
+                startActivity(wordIntent);
+            }
+        });
+
+
         // Initialize message ListView and its adapter
         mMomentList = findViewById(R.id.moment_list);
         List<Moment> myMoments = new ArrayList<>();
@@ -89,6 +101,7 @@ public class ProfileActivity extends AppCompatActivity {
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Moment newMoment = dataSnapshot.getValue(Moment.class);
                 mMomentAdapter.add(newMoment);
+                System.out.println("Tracy: " + newMoment.getmEditText());
             }
 
             @Override
@@ -142,6 +155,7 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
     }
+
 
 
     private void toastMessage(String message) {
