@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText mTextMoment;
     private String mPhotoUrl;
     private String mCurrentUserUid;
+    private ImageView mDisplayPhoto;
 
 
     private Button mSendBtn;
@@ -96,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         // Initialize Firebase components
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mStorage = FirebaseStorage.getInstance().getReference();
-
+        mDisplayPhoto = findViewById(R.id.photo_view);
 
         // click profile button and go to profile screen
         final Button profileBtn = findViewById(R.id.profile_btn);
@@ -136,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent imageIntent = new Intent(Intent.ACTION_GET_CONTENT);
-                imageIntent.setType("image/jpeg");
+                imageIntent.setType("image/*");
 //                imageIntent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
                 startActivityForResult(Intent.createChooser(imageIntent, "completing action using"), RC_PHOTO_PICKER);
             }
@@ -182,6 +185,7 @@ public class MainActivity extends AppCompatActivity {
                 mDatabase.child(mCurrentUserUid).push().setValue(newMoment);
                 mTextRate.setText(originalRateDisplayText);
                 mTextMoment.setText("");
+                mDisplayPhoto.setImageURI(null);
 
             }
         });
@@ -218,21 +222,32 @@ public class MainActivity extends AppCompatActivity {
             // picked image success, then store data
             Uri selectedImage = data.getData();
 
+            // display photo on the imageview
+            mDisplayPhoto.setImageURI(selectedImage);
+
             // get a reference to store file at user_UID/<filename>
             StorageReference photoRef = mStorage.child(mCurrentUserUid).child(selectedImage.getLastPathSegment());
-    
+            Log.v("storage red", photoRef + "");
             // upload file to firebase storage
-            // TODO: 7/16/18  Cannot upload imgae to firebase 
-            photoRef.putFile(selectedImage)
-                    .addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+            // TODO: 7/16/18  Cannot upload imgae to firebase
+//            photoRef.putFile(selectedImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                @Override
+//                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                    toastMessage("Upload done!");
+//                }
+//            });
 
-                            toastMessage("Upload done!");
+
+
+          photoRef.putFile(selectedImage)
+                 .addOnSuccessListener(MainActivity.this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                     @Override
+                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                          toastMessage("Upload done!");
 //                                mPhotoUrl = taskSnapshot.getDownloadUrl();
-                        }
-                    });
-        }
+                      }
+                   });
+     }
     }
 
     // toolbar options
