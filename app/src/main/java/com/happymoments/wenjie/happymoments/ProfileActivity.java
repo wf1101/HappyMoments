@@ -28,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -38,6 +39,11 @@ public class ProfileActivity extends AppCompatActivity {
     private ChildEventListener mChildEventListener;
     private String mUserName;
     private String mUserEmail;
+
+    // pass wordCloud data to wordcloud screen
+    private ArrayList<Moment> mMoments = new ArrayList<>();
+    private ArrayList<String> mWords = new ArrayList<>();
+    private String[] wordCloud;
 
 
     @Override
@@ -84,7 +90,7 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent wordIntent = new Intent(ProfileActivity.this, WordCloudActivity.class);
-                wordIntent.putExtra("word", "123");
+                wordIntent.putStringArrayListExtra("wordCloud", mWords);
                 startActivity(wordIntent);
             }
         });
@@ -101,7 +107,8 @@ public class ProfileActivity extends AppCompatActivity {
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Moment newMoment = dataSnapshot.getValue(Moment.class);
                 mMomentAdapter.add(newMoment);
-                System.out.println("Tracy: " + newMoment.getmEditText());
+                String[] oneMoment = newMoment.getmEditText().split(" ");
+                mWords.addAll(Arrays.asList(oneMoment));
             }
 
             @Override
