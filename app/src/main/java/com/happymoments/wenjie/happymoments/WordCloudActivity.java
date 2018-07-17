@@ -25,10 +25,8 @@ public class WordCloudActivity extends AppCompatActivity {
     private DatabaseReference mDataReference;
     private ArrayList<Moment> mMomentList = new ArrayList<>();
     private ChildEventListener mChildEventListener;
-    private ArrayList<String> mWords;
+    private ArrayList<String> mWords = new ArrayList<>();
     private String[] wordCloud;
-
-
 
 
     @Override
@@ -36,106 +34,14 @@ public class WordCloudActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_word_cloud);
 
-//        // get all moments data from database
-//        mMomentList = new ArrayList<>();
-
-//        mChildEventListener = new ChildEventListener() {
-//            @Override
-//            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-//                Moment newMoment = dataSnapshot.getValue(Moment.class);
-//                mMomentList.add(newMoment);
-//            }
-//
-//            @Override
-//            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-//            }
-//
-//            @Override
-//            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-//
-//            }
-//
-//            @Override
-//            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        };
-
-//        ValueEventListener momentListener = new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                Moment m = dataSnapshot.getValue(Moment.class);
-//                mMomentList.add(m);
-//                System.out.println("moment-123" + m.getmEditText());
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        };
-
-//        String childComponent = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//        mDataReference = FirebaseDatabase.getInstance().getReference().child(childComponent);
-
-//        mDataReference.addValueEventListener(momentListener);
-        // Initialize message ListView and its adapter
-//        mMomentList = findViewById(R.id.moment_list);
-//        List<Moment> myMoments = new ArrayList<>();
-//        mMomentAdapter = new MomentAdapter(this, R.layout.moment_display, myMoments);
-//        mMomentList.setAdapter(mMomentAdapter);
-
-        System.out.println("dadajda: " + getIntent().getExtras().getParcelable("word"));
-        mChildEventListener = new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                Moment newMoment = dataSnapshot.getValue(Moment.class);
-                System.out.println("momo: " + newMoment.getmEditText());
-                mMomentList.add(newMoment);
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        };
-
-        String childComponent = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        mDataReference = FirebaseDatabase.getInstance().getReference().child(childComponent);
-        mDataReference.addChildEventListener(mChildEventListener);
-
-        // convert moments data into arraylist then to array
-        mWords = new ArrayList<>();
-        for (Moment m: mMomentList) {
-           String[] oneMoment = m.getmEditText().split(" ");
-            mWords.addAll(Arrays.asList(oneMoment));
+        Bundle b = getIntent().getExtras();
+        mWords = b.getStringArrayList("wordCloud");
+        for (String w: mWords) {
         }
 
-//        wordCloud = mWords.toArray(new String[mWords.size()]);
-        wordCloud = new String[]{ "Donut", "Eclair", "Froyo", "Gingerbread", "Honeycomb",
-                "Ice Cream Sandwich", "Jelly Bean", "KitKat", "love", "Alex", "my", "hubby", "Lollipop", "Marshmallow"};
-
+        wordCloud = mWords.toArray(new String[mWords.size()]);
+//        wordCloud = new String[]{ "Donut", "Eclair", "Froyo", "Gingerbread", "Honeycomb",
+//                "Ice Cream Sandwich", "Jelly Bean", "KitKat", "love", "Alex", "my", "hubby", "Lollipop", "Marshmallow"};
 
 
         final WebView d3 = (WebView) findViewById(R.id.d3);
