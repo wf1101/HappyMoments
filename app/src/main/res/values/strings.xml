@@ -43,4 +43,7 @@
     <string name="choose_tag">Choose your tags</string>
     <string name="save">Save</string>
 
+    <!--Strings in top moments-->
+    <string name="top_moments">Top 5 Happy Tags</string>
+
 </resources>

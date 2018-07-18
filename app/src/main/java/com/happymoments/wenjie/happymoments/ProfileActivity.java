@@ -18,6 +18,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -44,6 +49,7 @@ public class ProfileActivity extends AppCompatActivity {
     private ArrayList<Moment> mMoments = new ArrayList<>();
     private ArrayList<String> mWords = new ArrayList<>();
     private String[] wordCloud;
+
 
 
     @Override
@@ -94,6 +100,18 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(wordIntent);
             }
         });
+
+        // Click topmoment btn to go to Top Moment screen
+        final Button topMomentBtn = findViewById(R.id.bar_chart_btn);
+        topMomentBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent barChartIntent = new Intent(ProfileActivity.this, BarChartActivity.class);
+                startActivity(barChartIntent);
+            }
+        });
+
+
 
 
         // Initialize message ListView and its adapter
