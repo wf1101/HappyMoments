@@ -35,6 +35,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private SeekBar mSeekBar;
     private TextView mTextRate;
     private int mRateValue;
-    private Date mDate;
+    private String mDate;
     private EditText mTextMoment;
     private String mPhotoUrl;
     private String mCurrentUserUid;
@@ -92,8 +93,8 @@ public class MainActivity extends AppCompatActivity {
         Date today = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(today);
-        String displayToday = calendar.get(Calendar.DAY_OF_MONTH)+ "/" + (calendar.get(Calendar.MONTH) + 1) + "/" + calendar.get(Calendar.YEAR);
-        mDisplayDate.setHint(displayToday);
+        String displayToday = (calendar.get(Calendar.MONTH ) + 1 )+ "/" + calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.YEAR);
+        mDisplayDate.setText(displayToday);
 
         // display the datepicker
         mDisplayDate.setOnClickListener(new View.OnClickListener() {
@@ -208,31 +209,15 @@ public class MainActivity extends AppCompatActivity {
                 // @param int mRateValue
                 // @param ArrayList<String> tagsList
                 // @param String mTextMoment
-                mDate = new Date();
+
+
+                mDate = mDisplayDate.getText().toString();
                 mTextMoment = findViewById(R.id.text_moment);
                 String textMoment = mTextMoment.getText().toString();
 
                 ArrayList<String> tagsList = new ArrayList<>();
-                // TODO: 7/11/18 how to find all checked boxes
+                tagsList = getCheckboxList();
 
-                CheckBox boxFamily = findViewById(R.id.box_family);
-                if (boxFamily.isChecked()){
-                    tagsList.add(boxFamily.getText().toString());
-                }
-
-                CheckBox boxBooks = findViewById(R.id.box_books);
-                if (boxBooks.isChecked()){
-                    tagsList.add(boxBooks.getText().toString());
-                }
-
-                CheckBox boxFood = findViewById(R.id.box_food);
-                if (boxFood.isChecked()){
-                    tagsList.add(boxFood.getText().toString());
-                }
-
-
-
-                // create a new instance of Moment
                 mPhotoUrl = "https://firebasestorage.googleapis.com/v0/b/happymoments-51ef5.appspot.com/o/FYF-870.jpg?alt=media&token=fbc37fe8-fa73-45c2-9061-faece5ee9e7e";
                 Moment newMoment = new Moment(mDate, mRateValue, tagsList, textMoment, mPhotoUrl);
 
@@ -247,21 +232,102 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+     private ArrayList<String> getCheckboxList() {
+          // all check boxes
+         // String[] rawCheckbox = new String[]{"friends", "books", "study", "family", "home", "ada",
+         // "solitude", "summer", "seattle", "garden", "dinner", "food", "travel", "outdoor", "peace", "volunteer", "music", "movie"};
+         ArrayList<String> tagsList = new ArrayList<>();
+
+         CheckBox friends = findViewById(R.id.friends_box);
+         if (friends.isChecked()){
+             tagsList.add(friends.getText().toString());
+         }
+         CheckBox books = findViewById(R.id.books_box);
+         if (books.isChecked()){
+             tagsList.add(books.getText().toString());
+         }
+         CheckBox study = findViewById(R.id.study_box);
+         if (study.isChecked()){
+             tagsList.add(study.getText().toString());
+         }
+         CheckBox family = findViewById(R.id.family_box);
+         if (family.isChecked()){
+             tagsList.add(family.getText().toString());
+         }
+         CheckBox home = findViewById(R.id.home_box);
+         if (home.isChecked()){
+             tagsList.add(home.getText().toString());
+         }
+         CheckBox ada = findViewById(R.id.ada_box);
+         if (ada.isChecked()){
+             tagsList.add(ada.getText().toString());
+         }
+         CheckBox solitude = findViewById(R.id.solitude_box);
+         if (solitude.isChecked()){
+             tagsList.add(solitude.getText().toString());
+         }
+         CheckBox summer = findViewById(R.id.summer_box);
+         if (summer.isChecked()){
+             tagsList.add(summer.getText().toString());
+         }
+         CheckBox seattle = findViewById(R.id.seattle_box);
+         if (seattle.isChecked()){
+             tagsList.add(seattle.getText().toString());
+         }
+         CheckBox garden = findViewById(R.id.garden_box);
+         if (garden.isChecked()){
+             tagsList.add(garden.getText().toString());
+         }
+         CheckBox food = findViewById(R.id.food_box);
+         if (food.isChecked()){
+             tagsList.add(food.getText().toString());
+         }
+         CheckBox dinner = findViewById(R.id.dinner_box);
+         if (dinner.isChecked()){
+             tagsList.add(dinner.getText().toString());
+         }
+         CheckBox travel = findViewById(R.id.travel_box);
+         if (travel.isChecked()){
+             tagsList.add(travel.getText().toString());
+         }
+         CheckBox outdoor = findViewById(R.id.outdoor_box);
+         if (outdoor.isChecked()){
+             tagsList.add(outdoor.getText().toString());
+         }
+         CheckBox peace = findViewById(R.id.peace_box);
+         if (peace.isChecked()){
+             tagsList.add(peace.getText().toString());
+         }
+         CheckBox music = findViewById(R.id.music_box);
+         if (music.isChecked()){
+             tagsList.add(music.getText().toString());
+         }
+         CheckBox movie = findViewById(R.id.movie_box);
+         if (movie.isChecked()){
+             tagsList.add(movie.getText().toString());
+         }
+         CheckBox volunteer = findViewById(R.id.voluteer_box);
+         if (volunteer.isChecked()){
+             tagsList.add(volunteer.getText().toString());
+         }
+         return  tagsList;
+     }
+
     // click profile button and go to profile screen
     public void goToProfile () {
         Intent profileIntent = new Intent(this, ProfileActivity.class);
         startActivity(profileIntent);
     }
 
-    // click more button to go to checkbox layout
-    public void goToMoreCheckbox(View v) {
-        setContentView(R.layout.activity_checkbox);
-    }
+//    // click more button to go to checkbox layout
+//    public void goToMoreCheckbox(View v) {
+//        setContentView(R.layout.activity_checkbox);
+//    }
 
-    // click save button to go back to home layout
-    public void goBackHome (View v) {
-        setContentView(R.layout.activity_main);
-    }
+//    // click save button to go back to home layout
+//    public void goBackHome (View v) {
+//        setContentView(R.layout.activity_main);
+//    }
 
 
     @Override
@@ -330,13 +396,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    // Add log out function - use Firebase UI
+    // Add  toolbar functions
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.log_out:
-                // sign out
-                toastMessage("log out");
+                // log out function - use Firebase UI
+                toastMessage("Successfully logged out");
                 AuthUI.getInstance().signOut(this);
                 return true;
             case R.id.profile_btn:

@@ -18,20 +18,19 @@
         app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
+            <include
+                android:id="@+id/action_bar"
+                layout="@layout/action_bar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <include
-            android:id="@+id/action_bar"
-            layout="@layout/action_bar"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </include>
+            </include>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -47,16 +46,13 @@
                     android:id="@+id/text_date_field"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginBottom="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:textSize="30sp"
-                    android:inputType="datetime"
                     android:labelFor="@+id/text_date_field"
-                    android:hint="@string/date"
-                    android:layout_gravity="center"
-                    android:layout_centerHorizontal="true"/>
+                    android:textSize="30sp" />
 
                 <TextView
                     android:id="@+id/text_display_rate"
@@ -85,77 +81,208 @@
                     android:paddingTop="10dp" />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/check_boxes"
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="85dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/check_boxes"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/family_box"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/family" />
+
+                        <CheckBox
+                            android:id="@+id/food_box"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/food" />
+
+                        <CheckBox
+                            android:id="@+id/books_box"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/books" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/travel_box"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/travel" />
+
+                        <CheckBox
+                            android:id="@+id/outdoor_box"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/outdoor" />
+
+                        <CheckBox
+                            android:id="@+id/movie_box"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/movie" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/ada_box"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/ada" />
+
+                        <CheckBox
+                            android:id="@+id/home_box"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/home" />
+
+                        <CheckBox
+                            android:id="@+id/music_box"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/music" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/friends_box"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/friends" />
+
+                        <CheckBox
+                            android:id="@+id/dinner_box"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/dinner" />
+
+                        <CheckBox
+                            android:id="@+id/voluteer_box"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/volunteer" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/solitude_box"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/solitude" />
+
+                        <CheckBox
+                            android:id="@+id/summer_box"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/summer" />
+
+                        <CheckBox
+                            android:id="@+id/seattle_box"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/seattle" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/study_box"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/study" />
+
+                        <CheckBox
+                            android:id="@+id/garden_box"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/garden" />
+
+                        <CheckBox
+                            android:id="@+id/peace_box"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/peace" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </ScrollView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="8dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
                 android:paddingEnd="20dp"
-                android:paddingStart="40dp">
+                android:paddingStart="20dp">
 
-                <CheckBox
-                    android:id="@+id/box_family"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/family" />
-
-                <CheckBox
-                    android:id="@+id/box_food"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/food" />
-
-                <CheckBox
-                    android:id="@+id/box_books"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/books" />
-
-                <Button
-                    android:id="@+id/more_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="goToMoreCheckbox"
-                    android:text="more"
-                    android:textAppearance="@style/TextAppearance.AppCompat" />
-            </LinearLayout>
+                <ImageView
+                    android:id="@+id/photo_view"
+                    android:layout_width="80dp"
+                    android:layout_height="70dp"
+                    android:contentDescription="TODO" />
 
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:paddingEnd="20dp"
-            android:paddingStart="20dp">
-
-            <ImageView
-                android:id="@+id/photo_view"
-                android:layout_width="80dp"
-                android:layout_height="70dp" />
-
-
-            <EditText
-                android:id="@+id/text_moment"
-                android:layout_width="match_parent"
-                android:layout_height="175dp"
-                android:layout_centerHorizontal="true"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:paddingBottom="20dp"
-                android:paddingEnd="20dp"
-                android:paddingStart="40dp"
-                android:text="@string/display_moment"
-                android:textAlignment="viewStart"
-                android:textAllCaps="false"
-                android:textSize="15sp" />
-        </RelativeLayout>
+                <EditText
+                    android:id="@+id/text_moment"
+                    android:layout_width="match_parent"
+                    android:layout_height="175dp"
+                    android:layout_centerHorizontal="true"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:paddingBottom="20dp"
+                    android:paddingEnd="20dp"
+                    android:paddingStart="40dp"
+                    android:text="@string/display_moment"
+                    android:textAlignment="viewStart"
+                    android:textAllCaps="false"
+                    android:textSize="15sp" />
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
