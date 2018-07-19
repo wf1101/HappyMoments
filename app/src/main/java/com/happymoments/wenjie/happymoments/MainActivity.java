@@ -65,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
     private Button mSendBtn;
     private Button mPhotoPickedBtn;
 
+    // default display date today
+    private String mDisplayToday;
 
     // Firebase instance variables
     private DatabaseReference mDatabase;
@@ -93,8 +95,8 @@ public class MainActivity extends AppCompatActivity {
         Date today = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(today);
-        String displayToday = (calendar.get(Calendar.MONTH ) + 1 )+ "/" + calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.YEAR);
-        mDisplayDate.setText(displayToday);
+        mDisplayToday = (calendar.get(Calendar.MONTH ) + 1 )+ "/" + calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.YEAR);
+        mDisplayDate.setText(mDisplayToday);
 
         // display the datepicker
         mDisplayDate.setOnClickListener(new View.OnClickListener() {
@@ -222,9 +224,15 @@ public class MainActivity extends AppCompatActivity {
 
                 // write the object to database
                 mDatabase.child(mCurrentUserUid).push().setValue(newMoment);
+
+                // set home screen to load main activity fresh
+//                Intent freshHome = new Intent(MainActivity.this, MainActivity.class);
+//                startActivity(freshHome);
                 mTextRate.setText(originalRateDisplayText);
                 mTextMoment.setText("");
                 mDisplayPhoto.setImageURI(null);
+                mDisplayDate.setText(mDisplayToday);
+                mSeekBar.setProgress(0);
 
             }
         });
