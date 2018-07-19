@@ -210,7 +210,6 @@ public class MainActivity extends AppCompatActivity {
                 // @param ArrayList<String> tagsList
                 // @param String mTextMoment
 
-
                 mDate = mDisplayDate.getText().toString();
                 mTextMoment = findViewById(R.id.text_moment);
                 String textMoment = mTextMoment.getText().toString();
@@ -232,6 +231,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // Find all the checked boxes and uncheck all checkboxed after getting its text
      private ArrayList<String> getCheckboxList() {
           // all check boxes
          // String[] rawCheckbox = new String[]{"friends", "books", "study", "family", "home", "ada",
@@ -241,74 +241,109 @@ public class MainActivity extends AppCompatActivity {
          CheckBox friends = findViewById(R.id.friends_box);
          if (friends.isChecked()){
              tagsList.add(friends.getText().toString());
+             friends.setChecked(false);
          }
+
          CheckBox books = findViewById(R.id.books_box);
          if (books.isChecked()){
              tagsList.add(books.getText().toString());
+             books.setChecked(false);
          }
+
          CheckBox study = findViewById(R.id.study_box);
          if (study.isChecked()){
              tagsList.add(study.getText().toString());
+             study.setChecked(false);
          }
+
          CheckBox family = findViewById(R.id.family_box);
          if (family.isChecked()){
              tagsList.add(family.getText().toString());
+             family.setChecked(false);
          }
+
          CheckBox home = findViewById(R.id.home_box);
          if (home.isChecked()){
              tagsList.add(home.getText().toString());
+             home.setChecked(false);
          }
+
          CheckBox ada = findViewById(R.id.ada_box);
          if (ada.isChecked()){
              tagsList.add(ada.getText().toString());
+             ada.setChecked(false);
          }
+
          CheckBox solitude = findViewById(R.id.solitude_box);
          if (solitude.isChecked()){
              tagsList.add(solitude.getText().toString());
+             solitude.setChecked(false);
          }
+
          CheckBox summer = findViewById(R.id.summer_box);
          if (summer.isChecked()){
              tagsList.add(summer.getText().toString());
+             summer.setChecked(false);
          }
+
          CheckBox seattle = findViewById(R.id.seattle_box);
          if (seattle.isChecked()){
              tagsList.add(seattle.getText().toString());
+             seattle.setChecked(false);
          }
+
          CheckBox garden = findViewById(R.id.garden_box);
          if (garden.isChecked()){
              tagsList.add(garden.getText().toString());
+             garden.setChecked(false);
          }
+
          CheckBox food = findViewById(R.id.food_box);
          if (food.isChecked()){
              tagsList.add(food.getText().toString());
+             food.setChecked(false);
          }
+
          CheckBox dinner = findViewById(R.id.dinner_box);
          if (dinner.isChecked()){
              tagsList.add(dinner.getText().toString());
+             dinner.setChecked(false);
          }
+
          CheckBox travel = findViewById(R.id.travel_box);
          if (travel.isChecked()){
              tagsList.add(travel.getText().toString());
+             travel.setChecked(false);
          }
+
          CheckBox outdoor = findViewById(R.id.outdoor_box);
          if (outdoor.isChecked()){
              tagsList.add(outdoor.getText().toString());
+             outdoor.setChecked(false);
          }
+
          CheckBox peace = findViewById(R.id.peace_box);
          if (peace.isChecked()){
              tagsList.add(peace.getText().toString());
+             peace.setChecked(false);
          }
+
          CheckBox music = findViewById(R.id.music_box);
          if (music.isChecked()){
              tagsList.add(music.getText().toString());
+             music.setChecked(false);
          }
+
          CheckBox movie = findViewById(R.id.movie_box);
          if (movie.isChecked()){
              tagsList.add(movie.getText().toString());
+             movie.setChecked(false);
          }
+
          CheckBox volunteer = findViewById(R.id.voluteer_box);
          if (volunteer.isChecked()){
              tagsList.add(volunteer.getText().toString());
+             volunteer.setChecked(false);
          }
          return  tagsList;
      }
@@ -318,17 +353,6 @@ public class MainActivity extends AppCompatActivity {
         Intent profileIntent = new Intent(this, ProfileActivity.class);
         startActivity(profileIntent);
     }
-
-//    // click more button to go to checkbox layout
-//    public void goToMoreCheckbox(View v) {
-//        setContentView(R.layout.activity_checkbox);
-//    }
-
-//    // click save button to go back to home layout
-//    public void goBackHome (View v) {
-//        setContentView(R.layout.activity_main);
-//    }
-
 
     @Override
     protected void onPause() {
