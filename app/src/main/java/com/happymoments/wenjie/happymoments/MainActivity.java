@@ -1,5 +1,6 @@
 package com.happymoments.wenjie.happymoments;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -362,6 +363,16 @@ public class MainActivity extends AppCompatActivity {
         startActivity(profileIntent);
     }
 
+    // click info button to get pop up info message
+    public void goToInfo() {
+        AlertDialog.Builder infoAlert = new AlertDialog.Builder(this);
+        infoAlert.setMessage("this is d=showing a test dajda dada this is d=showing a test dajda dada ")
+                .setTitle("How this works")
+                .setIcon(R.drawable.ic_launcher_background)
+                .create();
+        infoAlert.show();
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -439,6 +450,9 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.profile_btn:
                 goToProfile();
+                return true;
+            case R.id.info_btn:
+                goToInfo();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

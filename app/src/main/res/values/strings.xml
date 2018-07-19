@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">Happy Moments</string>
-    <string name="home">Home</string>
-    <string name="profile">profile</string>
     <string name="seekbar_text">Rate your happiness level</string>
     <string name="date">today</string>
     <string name="display_moment">write down your happy moment in just one sentence</string>
@@ -16,6 +14,9 @@
 
     <!--Strings related to action bar-->
     <string name="log_out">Log out</string>
+    <string name="home">Home</string>
+    <string name="profile">profile</string>
+    <string name="info">Info</string>
 
     <!--Strings in profile activity-->
     <string name="arrow">>></string>
