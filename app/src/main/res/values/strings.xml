@@ -4,7 +4,7 @@
     <string name="profile">profile</string>
     <string name="seekbar_text">Rate your happiness level</string>
     <string name="date">today</string>
-    <string name="display_moment">...</string>
+    <string name="display_moment">write down your happy moment in just one sentence</string>
     <string name="image">+</string>
 
     <!-- Strings related to login -->
