@@ -103,8 +103,6 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
 
-
-
         // Initialize message ListView and its adapter
         mMomentList = findViewById(R.id.moment_list);
         List<Moment> myMoments = new ArrayList<>();

@@ -10,14 +10,14 @@ public class Moment {
     private String mEditText;
     private int mHappinessLevel;
     private ArrayList<String> mCheckbox;
-    private Date mDate;
+    private String mDate;
     private String mPhotoUrl;
 
     // default constructor takes no parameters - for firebase purpose
     public Moment() {
     }
 
-    public Moment(Date date, int happinessLevel, ArrayList<String> checkbox, String editText, String photoUrl) {
+    public Moment(String date, int happinessLevel, ArrayList<String> checkbox, String editText, String photoUrl) {
         mDate = date;
         mHappinessLevel = happinessLevel;
         mCheckbox = checkbox;
@@ -37,7 +37,7 @@ public class Moment {
         return mEditText;
     }
 
-    public Date getmDate(){
+    public String getmDate(){
         return mDate;
     }
 

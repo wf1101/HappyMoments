@@ -26,7 +26,7 @@ public class MomentAdapter extends ArrayAdapter<Moment> {
 
         Moment newMoment = getItem(position);
 
-        date.setText("Today");
+        date.setText(newMoment.getmDate());
         text.setText(newMoment.getmEditText());
         rate.setText(newMoment.getmHappinessLevel() + "");
 
