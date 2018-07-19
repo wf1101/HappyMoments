@@ -69,15 +69,6 @@ public class ProfileActivity extends AppCompatActivity {
         name.setText(mUserName);
         email.setText(mUserEmail);
 
-        // click home button and go to home screen
-        final Button homeBtn = findViewById(R.id.home_btn);
-        homeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent homeIntent = new Intent(ProfileActivity.this, MainActivity.class);
-                startActivity(homeIntent);
-            }
-        });
 
         // click arrow button and go to setting page
         final Button settingBtn = findViewById(R.id.go_setting);
@@ -165,15 +156,23 @@ public class ProfileActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    // click home button and go to home screen
+    public void goToHome() {
+        Intent homeIntent = new Intent(this, MainActivity.class);
+        startActivity(homeIntent);
+    }
 
     // Add log out function - use Firebase UI
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        toastMessage("log out");
         switch (item.getItemId()){
             case R.id.log_out:
                 // sign out
+                toastMessage("log out");
                 AuthUI.getInstance().signOut(this);
+                return true;
+            case R.id.home_btn:
+                goToHome();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

@@ -1,6 +1,9 @@
 package com.happymoments.wenjie.happymoments;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -33,9 +37,19 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
+
+    // TAG
+    private static final String TAG = "This is main activity";
+
+    // datepicker variables
+    private TextView mDisplayDate;
+    private DatePickerDialog.OnDateSetListener mDateListener;
+
+
     // Moment object parameters
     private SeekBar mSeekBar;
     private TextView mTextRate;
@@ -72,8 +86,47 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.action_bar);
         setSupportActionBar(toolbar);
 
-        // initialize tage list
+        // set the date display to today
+        mDisplayDate = findViewById(R.id.text_date_field);
 
+        Date today = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(today);
+        String displayToday = calendar.get(Calendar.DAY_OF_MONTH)+ "/" + (calendar.get(Calendar.MONTH) + 1) + "/" + calendar.get(Calendar.YEAR);
+        mDisplayDate.setHint(displayToday);
+
+        // display the datepicker
+        mDisplayDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog = new DatePickerDialog(
+                        MainActivity.this,
+                        android.R.style.Theme_Holo_Light_DarkActionBar,
+                        mDateListener,
+                        year, month, day
+                );
+
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+
+
+        });
+
+        // datelistener for datepicker
+        mDateListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                month = month + 1;
+                String date = month + "/" + dayOfMonth + "/" + year;
+                mDisplayDate.setText(date);
+            }
+        };
 
         // check if user is logged in
         mAuth = FirebaseAuth.getInstance();
@@ -195,7 +248,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // click profile button and go to profile screen
-    public void goToProfile (View v) {
+    public void goToProfile () {
         Intent profileIntent = new Intent(this, ProfileActivity.class);
         startActivity(profileIntent);
     }
@@ -280,11 +333,14 @@ public class MainActivity extends AppCompatActivity {
     // Add log out function - use Firebase UI
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        toastMessage("log out");
         switch (item.getItemId()){
             case R.id.log_out:
                 // sign out
+                toastMessage("log out");
                 AuthUI.getInstance().signOut(this);
+                return true;
+            case R.id.profile_btn:
+                goToProfile();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
