@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -71,7 +72,7 @@ public class ProfileActivity extends AppCompatActivity {
 
 
         // click arrow button and go to setting page
-        final Button settingBtn = findViewById(R.id.go_setting);
+        final ImageButton settingBtn = findViewById(R.id.go_setting);
         settingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

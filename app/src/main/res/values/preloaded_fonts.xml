@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/aclonica</item>
+        <item>@font/arizonia</item>
+        <item>@font/astloch_bold</item>
+        <item>@font/audiowide</item>
+        <item>@font/autour_one</item>
+        <item>@font/bowlby_one_sc</item>
+        <item>@font/bungee_shade</item>
+        <item>@font/butcherman</item>
+        <item>@font/creepster</item>
+        <item>@font/delius_unicase</item>
+        <item>@font/diplomata</item>
+        <item>@font/syncopate</item>
+    </array>
+</resources>

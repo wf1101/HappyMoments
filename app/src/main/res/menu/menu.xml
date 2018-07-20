@@ -2,18 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/info_btn"
+        android:icon="@drawable/ic_info_outline_black_24dp"
         android:title="@string/info"
-        android:icon="@drawable/info_icon"
-        app:showAsAction="always"
-        android:id="@+id/info_btn">
-
-    </item>
-
-    <item
-        android:title="@string/log_out"
-        app:showAsAction="never"
-        android:id="@+id/log_out">
-    </item>
+        app:showAsAction="ifRoom"></item>
 
     <item
         android:title="@string/home"
@@ -26,7 +18,12 @@
         android:title="@string/profile"
         app:showAsAction="never"
         android:id="@+id/profile_btn">
+    </item>
 
+    <item
+        android:title="@string/log_out"
+        app:showAsAction="never"
+        android:id="@+id/log_out">
     </item>
 
 </menu>
