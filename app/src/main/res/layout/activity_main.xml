@@ -56,13 +56,15 @@
                         android:layout_marginTop="8dp"
                         android:labelFor="@+id/text_date_field"
                         android:text="@string/date"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textStyle="bold"
                         android:textSize="20sp" />
 
                     <ImageButton
                         android:id="@+id/date_pick_btn"
                         android:layout_width="50dp"
                         android:layout_height="40dp"
-                        android:background="@drawable/calendar_icon" />
+                        android:background="@drawable/ic_calendar" />
 
                 </LinearLayout>
 
@@ -74,6 +76,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
+                    android:textColor="@color/light_green"
                     android:paddingEnd="20dp"
                     android:paddingStart="40dp"
                     android:text="@string/seekbar_text"
@@ -86,10 +89,14 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
+                    android:accessibilityTraversalBefore="@+id/action_bar"
+                    android:foregroundTint="@color/colorAccent"
                     android:max="10"
                     android:paddingEnd="40dp"
                     android:paddingStart="40dp"
-                    android:paddingTop="10dp" />
+                    android:paddingTop="10dp"
+                    android:progressTint="@color/colorAccent"
+                    android:thumbTint="@color/colorAccent" />
             </LinearLayout>
 
             <ScrollView
@@ -112,18 +119,21 @@
                             android:id="@+id/family_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
+                            android:buttonTint="@android:color/holo_green_light"
                             android:text="@string/family" />
 
                         <CheckBox
                             android:id="@+id/food_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
+                            android:buttonTint="@android:color/holo_green_light"
                             android:text="@string/food" />
 
                         <CheckBox
                             android:id="@+id/books_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
+                            android:buttonTint="@android:color/holo_green_light"
                             android:text="@string/books" />
 
                     </LinearLayout>
@@ -138,18 +148,21 @@
                             android:id="@+id/travel_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
+                            android:buttonTint="@android:color/holo_green_light"
                             android:text="@string/travel" />
 
                         <CheckBox
                             android:id="@+id/outdoor_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
+                            android:buttonTint="@android:color/holo_green_light"
                             android:text="@string/outdoor" />
 
                         <CheckBox
                             android:id="@+id/movie_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
+                            android:buttonTint="@android:color/holo_green_light"
                             android:text="@string/movie" />
 
                     </LinearLayout>
@@ -164,18 +177,21 @@
                             android:id="@+id/ada_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
+                            android:buttonTint="@android:color/holo_green_light"
                             android:text="@string/ada" />
 
                         <CheckBox
                             android:id="@+id/home_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
+                            android:buttonTint="@android:color/holo_green_light"
                             android:text="@string/home" />
 
                         <CheckBox
                             android:id="@+id/music_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
+                            android:buttonTint="@android:color/holo_green_light"
                             android:text="@string/music" />
 
                     </LinearLayout>
@@ -190,18 +206,21 @@
                             android:id="@+id/friends_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
+                            android:buttonTint="@android:color/holo_green_light"
                             android:text="@string/friends" />
 
                         <CheckBox
                             android:id="@+id/dinner_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
+                            android:buttonTint="@android:color/holo_green_light"
                             android:text="@string/dinner" />
 
                         <CheckBox
                             android:id="@+id/voluteer_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
+                            android:buttonTint="@android:color/holo_green_light"
                             android:text="@string/volunteer" />
 
                     </LinearLayout>
@@ -216,18 +235,21 @@
                             android:id="@+id/solitude_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
+                            android:buttonTint="@android:color/holo_green_light"
                             android:text="@string/solitude" />
 
                         <CheckBox
                             android:id="@+id/summer_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
+                            android:buttonTint="@android:color/holo_green_light"
                             android:text="@string/summer" />
 
                         <CheckBox
                             android:id="@+id/seattle_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
+                            android:buttonTint="@android:color/holo_green_light"
                             android:text="@string/seattle" />
 
                     </LinearLayout>
@@ -242,18 +264,21 @@
                             android:id="@+id/study_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
+                            android:buttonTint="@android:color/holo_green_light"
                             android:text="@string/study" />
 
                         <CheckBox
                             android:id="@+id/garden_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
+                            android:buttonTint="@android:color/holo_green_light"
                             android:text="@string/garden" />
 
                         <CheckBox
                             android:id="@+id/peace_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
+                            android:buttonTint="@android:color/holo_green_light"
                             android:text="@string/peace" />
 
                     </LinearLayout>
@@ -296,7 +321,7 @@
                     android:paddingTop="10dp"
                     android:textAlignment="viewStart"
                     android:textAllCaps="false"
-                    android:textColor="?attr/colorControlActivated"
+                    android:textColor="@android:color/holo_green_light"
                     android:textSize="18sp"
                     android:typeface="monospace" />
             </RelativeLayout>
@@ -317,7 +342,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:src="@drawable/camera_icon" />
+                    android:src="@drawable/ic_camera" />
 
                 <Button
                     android:id="@+id/send_btn"
@@ -330,6 +355,8 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/autour_one"
                     android:text="@string/send"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold"
                     android:textSize="20sp" />
             </LinearLayout>
 
