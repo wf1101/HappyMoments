@@ -49,7 +49,7 @@
     <!--Strings in top moments-->
     <string name="top_moments">Top 5 Happy Tags</string>
     <string name="word_cloud">Word Cloud</string>
-    <string name="trend">trend</string>
+    <string name="history">History</string>
     <string name="profile_avatar">Profile Avatar</string>
     <string name="name">name</string>
     <string name="email">email</string>

@@ -54,6 +54,8 @@ public class ProfileActivity extends AppCompatActivity {
     // User's posted moments and scores
     private int mNumbersOfMoments = 0;
     private int mTotalScores = 0;
+    private TextView mNumberMoments;
+    private TextView mTotalPoints;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +73,11 @@ public class ProfileActivity extends AppCompatActivity {
         TextView email = findViewById(R.id.user_email);
         name.setText(mUserName);
         email.setText(mUserEmail);
+
+        // dislay number of moments and total points
+        mNumberMoments = findViewById(R.id.numbers_moments_view);
+        mTotalPoints = findViewById(R.id.points_display_view);
+
 
 
         // click arrow button and go to setting page
@@ -121,8 +128,11 @@ public class ProfileActivity extends AppCompatActivity {
                 mWords.addAll(Arrays.asList(oneMoment));
 
                 // get numbers of moments and total score of current user
-                mNumbersOfMoments += newMoment.getmHappinessLevel();
-                mTotalScores += 1;
+                mTotalScores += newMoment.getmHappinessLevel();
+                mNumbersOfMoments += 1;
+                mNumberMoments.setText("Moments: " + mNumbersOfMoments);
+                mTotalPoints.setText("Happy Points: " + mTotalScores);
+
             }
 
             @Override
@@ -149,6 +159,8 @@ public class ProfileActivity extends AppCompatActivity {
         String childComponent = FirebaseAuth.getInstance().getCurrentUser().getUid();
         mDataReference = FirebaseDatabase.getInstance().getReference().child(childComponent);
         mDataReference.addChildEventListener(mChildEventListener);
+
+
 
     }
 

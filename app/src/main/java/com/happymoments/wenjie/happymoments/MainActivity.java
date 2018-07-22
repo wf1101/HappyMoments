@@ -82,6 +82,26 @@ public class MainActivity extends AppCompatActivity {
     public static final int RC_SIGN_IN = 1;
     private static final int RC_PHOTO_PICKER = 2;
 
+    // all checkboxes
+    private CheckBox volunteer;
+    private CheckBox movie;
+    private CheckBox music;
+    private CheckBox peace;
+    private CheckBox outdoor;
+    private CheckBox travel;
+    private CheckBox dinner;
+    private CheckBox food;
+    private CheckBox garden;
+    private CheckBox seattle;
+    private CheckBox summer;
+    private CheckBox home;
+    private CheckBox solitude;
+    private CheckBox ada;
+    private CheckBox family;
+    private CheckBox study;
+    private CheckBox friends;
+    private CheckBox books;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -201,8 +221,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
          // click send button to create a new data entry to database
         mSendBtn = findViewById(R.id.send_btn);
         mSendBtn.setOnClickListener(new View.OnClickListener() {
@@ -222,142 +240,152 @@ public class MainActivity extends AppCompatActivity {
                 ArrayList<String> tagsList = new ArrayList<>();
                 tagsList = getCheckboxList();
 
-                mPhotoUrl = "https://firebasestorage.googleapis.com/v0/b/happymoments-51ef5.appspot.com/o/FYF-870.jpg?alt=media&token=fbc37fe8-fa73-45c2-9061-faece5ee9e7e";
-                Moment newMoment = new Moment(mDate, mRateValue, tagsList, textMoment, mPhotoUrl);
+                if (mRateValue != 0 && mTextMoment.getText().toString() != null) {
 
-                // write the object to database
-                mDatabase.child(mCurrentUserUid).push().setValue(newMoment);
+                    mPhotoUrl = "https://firebasestorage.googleapis.com/v0/b/happymoments-51ef5.appspot.com/o/FYF-870.jpg?alt=media&token=fbc37fe8-fa73-45c2-9061-faece5ee9e7e";
+                    Moment newMoment = new Moment(mDate, mRateValue, tagsList, textMoment, mPhotoUrl);
 
-                // set home screen to load main activity fresh
+                    // write the object to database
+                    mDatabase.child(mCurrentUserUid).push().setValue(newMoment);
+
+                    // set home screen to load main activity fresh
 //                Intent freshHome = new Intent(MainActivity.this, MainActivity.class);
 //                startActivity(freshHome);
-                mTextRate.setText(originalRateDisplayText);
-                mTextMoment.setText("");
-                mDisplayPhoto.setImageURI(null);
-                mDisplayDate.setText(mDisplayToday);
-                mSeekBar.setProgress(0);
+                    mTextRate.setText(originalRateDisplayText);
+                    mTextMoment.setText("");
+                    mDisplayPhoto.setImageURI(null);
+                    mDisplayDate.setText(mDisplayToday);
+                    mSeekBar.setProgress(0);
+                } else {
+                    toastMessage("Oops! Please rate your happiness level and describe this moment : )");
+                }
 
             }
         });
 
     }
 
-    // Find all the checked boxes and uncheck all checkboxed after getting its text
+    // Find all the checked boxes and get the name of box
      private ArrayList<String> getCheckboxList() {
           // all check boxes
          // String[] rawCheckbox = new String[]{"friends", "books", "study", "family", "home", "ada",
          // "solitude", "summer", "seattle", "garden", "dinner", "food", "travel", "outdoor", "peace", "volunteer", "music", "movie"};
          ArrayList<String> tagsList = new ArrayList<>();
 
-         CheckBox friends = findViewById(R.id.friends_box);
+         friends = findViewById(R.id.friends_box);
          if (friends.isChecked()){
              tagsList.add(friends.getText().toString());
-             friends.setChecked(false);
          }
 
-         CheckBox books = findViewById(R.id.books_box);
+         books = findViewById(R.id.books_box);
          if (books.isChecked()){
              tagsList.add(books.getText().toString());
-             books.setChecked(false);
+
          }
 
-         CheckBox study = findViewById(R.id.study_box);
+         study = findViewById(R.id.study_box);
          if (study.isChecked()){
              tagsList.add(study.getText().toString());
-             study.setChecked(false);
          }
 
-         CheckBox family = findViewById(R.id.family_box);
+         family = findViewById(R.id.family_box);
          if (family.isChecked()){
              tagsList.add(family.getText().toString());
-             family.setChecked(false);
          }
 
-         CheckBox home = findViewById(R.id.home_box);
+         home = findViewById(R.id.home_box);
          if (home.isChecked()){
              tagsList.add(home.getText().toString());
-             home.setChecked(false);
          }
 
-         CheckBox ada = findViewById(R.id.ada_box);
+         ada = findViewById(R.id.ada_box);
          if (ada.isChecked()){
              tagsList.add(ada.getText().toString());
-             ada.setChecked(false);
          }
 
-         CheckBox solitude = findViewById(R.id.solitude_box);
+         solitude = findViewById(R.id.solitude_box);
          if (solitude.isChecked()){
              tagsList.add(solitude.getText().toString());
-             solitude.setChecked(false);
          }
 
-         CheckBox summer = findViewById(R.id.summer_box);
+         summer = findViewById(R.id.summer_box);
          if (summer.isChecked()){
              tagsList.add(summer.getText().toString());
-             summer.setChecked(false);
          }
 
-         CheckBox seattle = findViewById(R.id.seattle_box);
+         seattle = findViewById(R.id.seattle_box);
          if (seattle.isChecked()){
              tagsList.add(seattle.getText().toString());
-             seattle.setChecked(false);
          }
 
-         CheckBox garden = findViewById(R.id.garden_box);
+         garden = findViewById(R.id.garden_box);
          if (garden.isChecked()){
              tagsList.add(garden.getText().toString());
-             garden.setChecked(false);
          }
 
-         CheckBox food = findViewById(R.id.food_box);
+         food = findViewById(R.id.food_box);
          if (food.isChecked()){
              tagsList.add(food.getText().toString());
-             food.setChecked(false);
          }
 
-         CheckBox dinner = findViewById(R.id.dinner_box);
+         dinner = findViewById(R.id.dinner_box);
          if (dinner.isChecked()){
              tagsList.add(dinner.getText().toString());
-             dinner.setChecked(false);
          }
 
-         CheckBox travel = findViewById(R.id.travel_box);
+         travel = findViewById(R.id.travel_box);
          if (travel.isChecked()){
              tagsList.add(travel.getText().toString());
-             travel.setChecked(false);
          }
 
-         CheckBox outdoor = findViewById(R.id.outdoor_box);
+         outdoor = findViewById(R.id.outdoor_box);
          if (outdoor.isChecked()){
              tagsList.add(outdoor.getText().toString());
-             outdoor.setChecked(false);
          }
 
-         CheckBox peace = findViewById(R.id.peace_box);
+         peace = findViewById(R.id.peace_box);
          if (peace.isChecked()){
              tagsList.add(peace.getText().toString());
-             peace.setChecked(false);
          }
 
-         CheckBox music = findViewById(R.id.music_box);
+         music = findViewById(R.id.music_box);
          if (music.isChecked()){
              tagsList.add(music.getText().toString());
-             music.setChecked(false);
          }
 
-         CheckBox movie = findViewById(R.id.movie_box);
+         movie = findViewById(R.id.movie_box);
          if (movie.isChecked()){
              tagsList.add(movie.getText().toString());
-             movie.setChecked(false);
          }
 
-         CheckBox volunteer = findViewById(R.id.voluteer_box);
+         volunteer = findViewById(R.id.voluteer_box);
          if (volunteer.isChecked()){
              tagsList.add(volunteer.getText().toString());
-             volunteer.setChecked(false);
          }
          return  tagsList;
      }
+
+     // set all check box to unchecked after sending new moment data
+    private void unCheckBoxes() {
+        volunteer.setChecked(false);
+        movie.setChecked(false);
+        music.setChecked(false);
+        peace.setChecked(false);
+        outdoor.setChecked(false);
+        travel.setChecked(false);
+        dinner.setChecked(false);
+        food.setChecked(false);
+        garden.setChecked(false);
+        seattle.setChecked(false);
+        summer.setChecked(false);
+        solitude.setChecked(false);
+        ada.setChecked(false);
+        home.setChecked(false);
+        family.setChecked(false);
+        study.setChecked(false);
+        friends.setChecked(false);
+        books.setChecked(false);
+    }
 
     // click profile button and go to profile screen
     public void goToProfile () {
