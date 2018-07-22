@@ -27,7 +27,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
-
             </include>
 
             <LinearLayout
@@ -40,18 +39,32 @@
                 android:orientation="vertical">
 
 
-                <TextView
-                    android:id="@+id/text_date_field"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:labelFor="@+id/text_date_field"
-                    android:text="@string/date"
-                    android:textSize="30sp" />
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/text_date_field"
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:labelFor="@+id/text_date_field"
+                        android:text="@string/date"
+                        android:textSize="20sp" />
+
+                    <ImageButton
+                        android:id="@+id/date_pick_btn"
+                        android:layout_width="50dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/calendar_icon" />
+
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/text_display_rate"
@@ -256,6 +269,8 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
+                android:focusable="false"
+                android:focusableInTouchMode="true"
                 android:background="@drawable/moment_border">
 
                 <ImageView

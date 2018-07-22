@@ -3,6 +3,6 @@
     style="@style/ToolBarStyle"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:background="@android:color/holo_orange_dark">
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
 </android.support.v7.widget.Toolbar>

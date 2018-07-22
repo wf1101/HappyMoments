@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Happy Moments</string>
+    <string name="app_name">Moment It Up</string>
     <string name="seekbar_text">Rate your happiness level</string>
     <string name="date">today</string>
     <string name="display_moment">write down your happy moment in just one sentence</string>

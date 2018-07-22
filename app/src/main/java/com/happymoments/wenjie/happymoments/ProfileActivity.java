@@ -51,7 +51,9 @@ public class ProfileActivity extends AppCompatActivity {
     private ArrayList<String> mWords = new ArrayList<>();
     private String[] wordCloud;
 
-
+    // User's posted moments and scores
+    private int mNumbersOfMoments = 0;
+    private int mTotalScores = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,6 +119,10 @@ public class ProfileActivity extends AppCompatActivity {
                 mMomentAdapter.add(newMoment);
                 String[] oneMoment = newMoment.getmEditText().split(" ");
                 mWords.addAll(Arrays.asList(oneMoment));
+
+                // get numbers of moments and total score of current user
+                mNumbersOfMoments += newMoment.getmHappinessLevel();
+                mTotalScores += 1;
             }
 
             @Override

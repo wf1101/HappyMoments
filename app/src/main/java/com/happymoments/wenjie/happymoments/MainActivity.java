@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     // datepicker variables
     private TextView mDisplayDate;
     private DatePickerDialog.OnDateSetListener mDateListener;
+    private ImageButton mDatePickerBtn;
 
 
     // Moment object parameters
@@ -81,8 +82,6 @@ public class MainActivity extends AppCompatActivity {
     public static final int RC_SIGN_IN = 1;
     private static final int RC_PHOTO_PICKER = 2;
 
-//    private ArrayList<String> mTagList;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,7 +101,8 @@ public class MainActivity extends AppCompatActivity {
         mDisplayDate.setText(mDisplayToday);
 
         // display the datepicker
-        mDisplayDate.setOnClickListener(new View.OnClickListener() {
+        mDatePickerBtn = findViewById(R.id.date_pick_btn);
+        mDatePickerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Calendar cal = Calendar.getInstance();
@@ -410,14 +410,6 @@ public class MainActivity extends AppCompatActivity {
             // get a reference to store file at user_UID/<filename>
             StorageReference photoRef = mStorage.child(mCurrentUserUid).child(selectedImage.getLastPathSegment());
             Log.v("storage red", photoRef + "");
-            // upload file to firebase storage
-            // TODO: 7/16/18  Cannot upload imgae to firebase
-//            photoRef.putFile(selectedImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                @Override
-//                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                    toastMessage("Upload done!");
-//                }
-//            });
 
 
 
