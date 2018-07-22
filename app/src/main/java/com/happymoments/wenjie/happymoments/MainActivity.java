@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -396,10 +397,12 @@ public class MainActivity extends AppCompatActivity {
     // click info button to get pop up info message
     public void goToInfo() {
         AlertDialog.Builder infoAlert = new AlertDialog.Builder(this);
-        infoAlert.setMessage("this is d=showing a test dajda dada this is d=showing a test dajda dada ")
-                .setTitle("How this works")
-                .setIcon(R.drawable.ic_launcher_background)
-                .create();
+        View view = LayoutInflater.from(this).inflate(R.layout.info_layout, null);
+//        infoAlert.setMessage("this is d=showing a test dajda dada this is d=showing a test dajda dada ")
+//                .setTitle("Lear what makes you happy")
+//                .setIcon(R.drawable.ic_popup)
+//                .create();
+        infoAlert.setView(view);
         infoAlert.show();
     }
 
