@@ -29,6 +29,7 @@ public class HistoryActivity extends AppCompatActivity {
     private ArrayList<String> mWords = new ArrayList<>();
     private String[] wordCloud;
 
+    // tags list
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

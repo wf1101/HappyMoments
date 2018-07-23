@@ -50,6 +50,10 @@ dependencies {
     // MPAndroid Chart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 
+    // cardview
+    implementation 'com.android.support:cardview-v7:27.1.1'
+
+
 
 }
 

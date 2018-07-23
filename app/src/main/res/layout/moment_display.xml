@@ -2,32 +2,71 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="5dp"
-    android:layout_marginLeft="5dp"
-    android:layout_marginRight="8dp"
-    android:layout_marginTop="5dp"
-    android:orientation="horizontal">
+    android:layout_marginBottom="10dp"
+    android:layout_marginTop="10dp"
+    android:background="@drawable/moment_border"
+    android:orientation="horizontal"
+    android:padding="10dp">
 
-    <TextView
-        android:id="@+id/date_display"
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/lollipop" />
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/date" />
-
-    <TextView
-        android:id="@+id/text_display"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_weight="1"
-        android:text="@string/home" />
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/date_display"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7/18/2018"
+            android:textSize="12sp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/text_display"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="this is the moment content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tags: "
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tags_display"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="dinner summer"
+                android:textColor="@color/colorPrimaryDark" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/rate_display"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_vertical"
         android:layout_marginRight="5dp"
-        android:text="@string/profile" />
+        android:background="@drawable/circle_background"
+        android:gravity="center"
+        android:text="8"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
 </LinearLayout>

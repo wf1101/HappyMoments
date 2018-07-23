@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MomentAdapter extends ArrayAdapter<Moment> {
@@ -23,12 +24,20 @@ public class MomentAdapter extends ArrayAdapter<Moment> {
         TextView date = convertView.findViewById(R.id.date_display);
         TextView text = convertView.findViewById(R.id.text_display);
         TextView rate = convertView.findViewById(R.id.rate_display);
+        TextView tags = convertView.findViewById(R.id.tags_display);
 
         Moment newMoment = getItem(position);
 
         date.setText(newMoment.getmDate());
         text.setText(newMoment.getmEditText());
         rate.setText(newMoment.getmHappinessLevel() + "");
+
+        String checkedTags = "" ;
+        ArrayList<String> tagList = newMoment.getmCheckbox();
+        for (String tag: tagList) {
+            checkedTags += tag + " ";
+        }
+        tags.setText(checkedTags);
 
         return convertView;
     }
