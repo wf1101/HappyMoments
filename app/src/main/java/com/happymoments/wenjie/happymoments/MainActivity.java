@@ -252,6 +252,7 @@ public class MainActivity extends AppCompatActivity {
                     // set home screen to load main activity fresh
 //                Intent freshHome = new Intent(MainActivity.this, MainActivity.class);
 //                startActivity(freshHome);
+                    unCheckBoxes();
                     mTextRate.setText(originalRateDisplayText);
                     mTextMoment.setText("");
                     mDisplayPhoto.setImageURI(null);

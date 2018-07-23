@@ -43,7 +43,8 @@ public class WordCloudActivity extends AppCompatActivity {
 //        wordCloud = (String[]) (mWords.subList(0, 20)).toArray();
         wordCloud = mWords.toArray(new String[mWords.size()]);
 //        wordCloud = new String[]{ "Donut", "Eclair", "Froyo", "Gingerbread", "Honeycomb",
-//                "Ice Cream Sandwich", "Jelly Bean", "KitKat", "love", "Alex", "my", "hubby", "Lollipop", "Marshmallow"};
+//                "Ice Cream Sandwich", "Jelly Bean", "KitKat", "love", "Alex",
+//                "Donut", "Eclair", "Froyo", "Gingerbread", "Honeycomb","my", "hubby", "Lollipop", "Marshmallow"};
 
 
         final WebView d3 = (WebView) findViewById(R.id.d3);

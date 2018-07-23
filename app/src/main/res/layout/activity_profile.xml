@@ -153,10 +153,10 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="30dp"
+                    android:layout_width="70dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/word_cloud" />
+                    android:src="@drawable/ic_word_cloud" />
 
                 <Button
                     android:id="@+id/word_cloud_btn"
@@ -177,10 +177,10 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="30dp"
+                    android:layout_width="70dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/top_moments" />
+                    android:src="@drawable/ic_chart" />
 
                 <Button
                     android:id="@+id/bar_chart_btn"
@@ -200,10 +200,10 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="30dp"
+                    android:layout_width="70dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/trend" />
+                    android:src="@drawable/ic_history" />
 
                 <Button
                     style="@style/Widget.AppCompat.Button.Borderless"
