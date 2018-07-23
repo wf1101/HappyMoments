@@ -398,10 +398,6 @@ public class MainActivity extends AppCompatActivity {
     public void goToInfo() {
         AlertDialog.Builder infoAlert = new AlertDialog.Builder(this);
         View view = LayoutInflater.from(this).inflate(R.layout.info_layout, null);
-//        infoAlert.setMessage("this is d=showing a test dajda dada this is d=showing a test dajda dada ")
-//                .setTitle("Lear what makes you happy")
-//                .setIcon(R.drawable.ic_popup)
-//                .create();
         infoAlert.setView(view);
         infoAlert.show();
     }

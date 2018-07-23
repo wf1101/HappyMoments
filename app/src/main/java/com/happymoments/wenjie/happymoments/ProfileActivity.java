@@ -1,5 +1,6 @@
 package com.happymoments.wenjie.happymoments;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -7,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -179,6 +181,14 @@ public class ProfileActivity extends AppCompatActivity {
         startActivity(homeIntent);
     }
 
+    // click info button and popup info view
+    public void goToInfo() {
+        AlertDialog.Builder infoAlert = new AlertDialog.Builder(this);
+        View view = LayoutInflater.from(this).inflate(R.layout.info_layout, null);
+        infoAlert.setView(view);
+        infoAlert.show();
+    }
+
     // Add log out function - use Firebase UI
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -190,6 +200,9 @@ public class ProfileActivity extends AppCompatActivity {
                 return true;
             case R.id.home_btn:
                 goToHome();
+                return true;
+            case R.id.info_btn:
+                goToInfo();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
