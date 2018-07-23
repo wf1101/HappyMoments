@@ -20,12 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity"></activity>
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".SettingActivity">
-        </activity>
+        <activity android:name=".SettingActivity"></activity>
         <activity android:name=".WordCloudActivity" />
         <activity android:name=".BarChartActivity" />
 
@@ -40,6 +37,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".HistoryActivity"></activity>
     </application>
 
 </manifest>

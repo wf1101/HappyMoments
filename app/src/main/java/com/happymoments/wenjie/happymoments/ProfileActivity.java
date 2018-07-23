@@ -41,8 +41,8 @@ import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
 //    private FirebaseDatabase mDatabase;
-    private MomentAdapter mMomentAdapter;
-    private ListView mMomentList;
+//    private MomentAdapter mMomentAdapter;
+//    private ListView mMomentList;
     private DatabaseReference mDataReference;
     private ChildEventListener mChildEventListener;
     private String mUserName;
@@ -81,7 +81,6 @@ public class ProfileActivity extends AppCompatActivity {
         mTotalPoints = findViewById(R.id.points_display_view);
 
 
-
         // click arrow button and go to setting page
         final ImageButton settingBtn = findViewById(R.id.go_setting);
         settingBtn.setOnClickListener(new View.OnClickListener() {
@@ -114,18 +113,28 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        // click histoty btn to go to history screen
+        final Button history = findViewById(R.id.history_btn);
+        history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent historyIntent = new Intent(ProfileActivity.this, HistoryActivity.class);
+                startActivity(historyIntent);
+            }
+        });
+
 
         // Initialize message ListView and its adapter
-        mMomentList = findViewById(R.id.moment_list);
-        List<Moment> myMoments = new ArrayList<>();
-        mMomentAdapter = new MomentAdapter(this, R.layout.moment_display, myMoments);
-        mMomentList.setAdapter(mMomentAdapter);
+//        mMomentList = findViewById(R.id.moment_list);
+//        List<Moment> myMoments = new ArrayList<>();
+//        mMomentAdapter = new MomentAdapter(this, R.layout.moment_display, myMoments);
+//        mMomentList.setAdapter(mMomentAdapter);
 
         mChildEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Moment newMoment = dataSnapshot.getValue(Moment.class);
-                mMomentAdapter.add(newMoment);
+//                mMomentAdapter.add(newMoment);
                 String[] oneMoment = newMoment.getmEditText().split(" ");
                 mWords.addAll(Arrays.asList(oneMoment));
 
@@ -161,8 +170,6 @@ public class ProfileActivity extends AppCompatActivity {
         String childComponent = FirebaseAuth.getInstance().getCurrentUser().getUid();
         mDataReference = FirebaseDatabase.getInstance().getReference().child(childComponent);
         mDataReference.addChildEventListener(mChildEventListener);
-
-
 
     }
 

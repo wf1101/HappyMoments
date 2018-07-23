@@ -21,6 +21,7 @@
 
     <!--Strings in profile activity-->
     <string name="arrow">>></string>
+    <string name="quote">Be happy and a reason will come along</string>
 
     <!--Strings in setting activity-->
     <string name="setting_name">Name</string>
