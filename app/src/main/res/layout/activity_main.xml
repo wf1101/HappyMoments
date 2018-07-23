@@ -302,8 +302,7 @@
                 <ImageView
                     android:id="@+id/photo_view"
                     android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:contentDescription="TODO" />
+                    android:layout_height="60dp" />
 
 
                 <EditText

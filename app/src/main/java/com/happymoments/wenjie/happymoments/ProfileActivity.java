@@ -33,10 +33,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.w3c.dom.DOMStringList;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -58,6 +60,9 @@ public class ProfileActivity extends AppCompatActivity {
     private int mTotalScores = 0;
     private TextView mNumberMoments;
     private TextView mTotalPoints;
+
+    // find top 5 tags
+    private HashMap<String, Integer> mTagPoints = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,7 +114,10 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent barChartIntent = new Intent(ProfileActivity.this, BarChartActivity.class);
+                HashMap<String, Integer> topTags = findTopTags();
+                barChartIntent.putExtra("hashmap", topTags);
                 startActivity(barChartIntent);
+
             }
         });
 
@@ -143,6 +151,18 @@ public class ProfileActivity extends AppCompatActivity {
                 mNumbersOfMoments += 1;
                 mNumberMoments.setText("Moments: " + mNumbersOfMoments);
                 mTotalPoints.setText("Happy Points: " + mTotalScores);
+
+                // write all the tags and points to hashmap
+                ArrayList<String> newTags = newMoment.getmCheckbox();
+                for (String tag: newTags) {
+                    if (mTagPoints.containsKey(tag)) {
+                        int points = mTagPoints.get(tag);
+                        int updatePoints = points + newMoment.getmHappinessLevel();
+                        mTagPoints.put(tag, updatePoints);
+                    } else {
+                        mTagPoints.put(tag, 0);
+                    }
+                }
 
             }
 
@@ -217,7 +237,13 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
+    // Find top 5 tags
+    private HashMap findTopTags() {
+        HashMap topTags = new HashMap();
 
+
+        return topTags;
+    }
 
     private void toastMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();

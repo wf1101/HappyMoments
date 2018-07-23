@@ -21,9 +21,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="history_moments"
+            android:text="@string/history_moments"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="18sp"
+            android:textSize="25sp"
             android:textStyle="bold" />
 
 
