@@ -17,6 +17,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
@@ -112,6 +114,13 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.action_bar);
         setSupportActionBar(toolbar);
 
+        // set the statusbar color to colorPrimaryDark
+        Window window = getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(Color.parseColor("#0f0805"));
+
+
         // set the date display to today
         mDisplayDate = findViewById(R.id.text_date_field);
 
@@ -144,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         });
+
 
         // datelistener for datepicker
         mDateListener = new DatePickerDialog.OnDateSetListener() {

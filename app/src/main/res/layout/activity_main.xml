@@ -124,21 +124,21 @@
                             android:id="@+id/family_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
-                            android:buttonTint="@android:color/holo_green_light"
+                            android:buttonTint="@color/colorPrimaryDark"
                             android:text="@string/family" />
 
                         <CheckBox
                             android:id="@+id/food_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
-                            android:buttonTint="@android:color/holo_green_light"
+                            android:buttonTint="@color/colorPrimaryDark"
                             android:text="@string/food" />
 
                         <CheckBox
                             android:id="@+id/books_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
-                            android:buttonTint="@android:color/holo_green_light"
+                            android:buttonTint="@color/colorPrimaryDark"
                             android:text="@string/books" />
 
                     </LinearLayout>
@@ -153,21 +153,21 @@
                             android:id="@+id/travel_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
-                            android:buttonTint="@android:color/holo_green_light"
+                            android:buttonTint="@color/colorPrimaryDark"
                             android:text="@string/travel" />
 
                         <CheckBox
                             android:id="@+id/outdoor_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
-                            android:buttonTint="@android:color/holo_green_light"
+                            android:buttonTint="@color/colorPrimaryDark"
                             android:text="@string/outdoor" />
 
                         <CheckBox
                             android:id="@+id/movie_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
-                            android:buttonTint="@android:color/holo_green_light"
+                            android:buttonTint="@color/colorPrimaryDark"
                             android:text="@string/movie" />
 
                     </LinearLayout>
@@ -182,21 +182,21 @@
                             android:id="@+id/ada_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
-                            android:buttonTint="@android:color/holo_green_light"
+                            android:buttonTint="@color/colorPrimaryDark"
                             android:text="@string/ada" />
 
                         <CheckBox
                             android:id="@+id/home_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
-                            android:buttonTint="@android:color/holo_green_light"
+                            android:buttonTint="@color/colorPrimaryDark"
                             android:text="@string/home" />
 
                         <CheckBox
                             android:id="@+id/music_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
-                            android:buttonTint="@android:color/holo_green_light"
+                            android:buttonTint="@color/colorPrimaryDark"
                             android:text="@string/music" />
 
                     </LinearLayout>
@@ -211,21 +211,21 @@
                             android:id="@+id/friends_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
-                            android:buttonTint="@android:color/holo_green_light"
+                            android:buttonTint="@color/colorPrimaryDark"
                             android:text="@string/friends" />
 
                         <CheckBox
                             android:id="@+id/dinner_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
-                            android:buttonTint="@android:color/holo_green_light"
+                            android:buttonTint="@color/colorPrimaryDark"
                             android:text="@string/dinner" />
 
                         <CheckBox
                             android:id="@+id/voluteer_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
-                            android:buttonTint="@android:color/holo_green_light"
+                            android:buttonTint="@color/colorPrimaryDark"
                             android:text="@string/volunteer" />
 
                     </LinearLayout>
@@ -240,21 +240,21 @@
                             android:id="@+id/solitude_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
-                            android:buttonTint="@android:color/holo_green_light"
+                            android:buttonTint="@color/colorPrimaryDark"
                             android:text="@string/solitude" />
 
                         <CheckBox
                             android:id="@+id/summer_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
-                            android:buttonTint="@android:color/holo_green_light"
+                            android:buttonTint="@color/colorPrimaryDark"
                             android:text="@string/summer" />
 
                         <CheckBox
                             android:id="@+id/seattle_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
-                            android:buttonTint="@android:color/holo_green_light"
+                            android:buttonTint="@color/colorPrimaryDark"
                             android:text="@string/seattle" />
 
                     </LinearLayout>
@@ -269,21 +269,21 @@
                             android:id="@+id/study_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
-                            android:buttonTint="@android:color/holo_green_light"
+                            android:buttonTint="@color/colorPrimaryDark"
                             android:text="@string/study" />
 
                         <CheckBox
                             android:id="@+id/garden_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
-                            android:buttonTint="@android:color/holo_green_light"
+                            android:buttonTint="@color/colorPrimaryDark"
                             android:text="@string/garden" />
 
                         <CheckBox
                             android:id="@+id/peace_box"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
-                            android:buttonTint="@android:color/holo_green_light"
+                            android:buttonTint="@color/colorPrimaryDark"
                             android:text="@string/peace" />
 
                     </LinearLayout>
