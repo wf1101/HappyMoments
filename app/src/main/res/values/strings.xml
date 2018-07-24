@@ -55,4 +55,7 @@
     <string name="name">name</string>
     <string name="email">email</string>
 
+    <!--Strings in history screen-->
+    <string name="history_moments">Happy Moments</string>
+
 </resources>
