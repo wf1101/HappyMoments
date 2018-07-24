@@ -38,8 +38,14 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class ProfileActivity extends AppCompatActivity {
 //    private FirebaseDatabase mDatabase;
@@ -147,7 +153,7 @@ public class ProfileActivity extends AppCompatActivity {
                 mWords.addAll(Arrays.asList(oneMoment));
 
                 // get numbers of moments and total score of current user
-                mTotalScores += newMoment.getmHappinessLevel();
+                mTotalScores += newMoment.getmHappinessLevel() * newMoment.getmCheckbox().size();
                 mNumbersOfMoments += 1;
                 mNumberMoments.setText("Moments: " + mNumbersOfMoments);
                 mTotalPoints.setText("Happy Points: " + mTotalScores);
@@ -160,7 +166,7 @@ public class ProfileActivity extends AppCompatActivity {
                         int updatePoints = points + newMoment.getmHappinessLevel();
                         mTagPoints.put(tag, updatePoints);
                     } else {
-                        mTagPoints.put(tag, 0);
+                        mTagPoints.put(tag, newMoment.getmHappinessLevel());
                     }
                 }
 
@@ -238,11 +244,20 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     // Find top 5 tags
-    private HashMap findTopTags() {
-        HashMap topTags = new HashMap();
+    private HashMap<String, Integer> findTopTags() {
+        HashMap<String, Integer> result = new HashMap<>();
+        mTagPoints.entrySet().stream()
+                .sorted(Map.Entry.comparingByValue(Collections.reverseOrder()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+                        (oldValue, newValue) -> oldValue, LinkedHashMap::new))
+                .entrySet()
+                .stream()
+                .limit(5)
+                .forEach(entry -> {
+                    result.put(entry.getKey(), entry.getValue());
+                });
 
-
-        return topTags;
+        return result;
     }
 
     private void toastMessage(String message) {

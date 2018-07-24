@@ -13,6 +13,8 @@ import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BarChartActivity extends AppCompatActivity {
     // barchart
@@ -32,23 +34,38 @@ public class BarChartActivity extends AppCompatActivity {
         barChart.setPinchZoom(false);
         barChart.setDrawGridBackground(false);
 
+        // get the hashmap passed from profile activity
+        HashMap<String, Integer> map = (HashMap) getIntent().getSerializableExtra("hashmap");
+//        String[] tags = new String[]{"Food", "Home", "Books", "Seattle", "Love", "Summer"};
+
+        ArrayList<String> rawTags = new ArrayList<>();
+        rawTags.add("Test");
+        ArrayList<Integer> rawPoints = new ArrayList<>();
+        map.forEach((k, v) -> {
+            rawTags.add(k);
+            rawPoints.add(v);
+        });
+
+        String[] tags = new String[6];
+        tags = rawTags.toArray(tags);
+
         ArrayList<BarEntry> barEntries = new ArrayList<>();
 
-        barEntries.add(new BarEntry(1, 40f));
-        barEntries.add(new BarEntry(2, 43f));
-        barEntries.add(new BarEntry(3, 30f));
-        barEntries.add(new BarEntry(4, 20f));
-        barEntries.add(new BarEntry(5, 47f));
+        barEntries.add(new BarEntry(1, rawPoints.get(0)));
+        barEntries.add(new BarEntry(2, rawPoints.get(1)));
+        barEntries.add(new BarEntry(3, rawPoints.get(2)));
+        barEntries.add(new BarEntry(4, rawPoints.get(3)));
+        barEntries.add(new BarEntry(5, rawPoints.get(4)));
 
 
-        BarDataSet barDataSet = new BarDataSet(barEntries, "Data Set1");
+        BarDataSet barDataSet = new BarDataSet(barEntries, "Happy tags");
         barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
 
         BarData data = new BarData(barDataSet);
         data.setBarWidth(0.8f);
         barChart.setData(data);
 
-        String[] tags = new String[]{"Food", "Home", "Books", "Seattle", "Love", "Summer"};
+
         XAxis xAxis = barChart.getXAxis();
         xAxis.setValueFormatter(new MyXAxisValueFormatter(tags));
         xAxis.setPosition(XAxis.XAxisPosition.BOTH_SIDED);
