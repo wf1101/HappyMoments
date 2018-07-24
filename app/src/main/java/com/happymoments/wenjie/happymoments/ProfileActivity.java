@@ -81,17 +81,6 @@ public class ProfileActivity extends AppCompatActivity {
         mTotalPoints = findViewById(R.id.points_display_view);
 
 
-        // click arrow button and go to setting page
-        final ImageButton settingBtn = findViewById(R.id.go_setting);
-        settingBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent settingIntent = new Intent(ProfileActivity.this, SettingActivity.class);
-                startActivity(settingIntent);
-            }
-        });
-
-
         // click wordcloud btn to go to word cloud screen
         final Button wordCloudBtn = findViewById(R.id.word_cloud_btn);
         wordCloudBtn.setOnClickListener(new View.OnClickListener() {
@@ -202,7 +191,7 @@ public class ProfileActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.log_out:
                 // sign out
-                toastMessage("log out");
+                toastMessage("You are successfully logged out.");
                 AuthUI.getInstance().signOut(this);
                 return true;
             case R.id.home_btn:
