@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.AxisBase;
@@ -46,18 +47,32 @@ public class BarChartActivity extends AppCompatActivity {
         // get the hashmap passed from profile activity
         HashMap<String, Integer> map = (HashMap) getIntent().getSerializableExtra("hashmap");
 //        String[] tags = new String[]{"Food", "Home", "Books", "Seattle", "Love", "Summer"};
-
         ArrayList<String> rawTags = new ArrayList<>();
-        rawTags.add("Test");
         ArrayList<Integer> rawPoints = new ArrayList<>();
-        map.forEach((k, v) -> {
-            rawTags.add(k);
-            rawPoints.add(v);
-        });
-
+        rawTags.add("Test");
         String[] tags = new String[6];
-        tags = rawTags.toArray(tags);
 
+        if (map.size() >= 5) {
+            map.forEach((k, v) -> {
+                rawTags.add(k);
+                rawPoints.add(v);
+            });
+
+        } else {
+            toastMessage("Start tracking your happy moments now!");
+            rawTags.add(" ");
+            rawTags.add(" ");
+            rawTags.add(" ");
+            rawTags.add(" ");
+            rawTags.add(" ");
+            rawPoints.add(0);
+            rawPoints.add(0);
+            rawPoints.add(0);
+            rawPoints.add(0);
+            rawPoints.add(0);
+        }
+
+        tags = rawTags.toArray(tags);
         ArrayList<BarEntry> barEntries = new ArrayList<>();
 
         barEntries.add(new BarEntry(1, rawPoints.get(0)));
@@ -94,5 +109,9 @@ public class BarChartActivity extends AppCompatActivity {
         public String getFormattedValue(float value, AxisBase axis) {
             return mValues[(int)value];
         }
+    }
+
+    private void toastMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }
