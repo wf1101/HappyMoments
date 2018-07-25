@@ -106,7 +106,7 @@
                 android:paddingEnd="5dp"
                 android:paddingStart="10dp"
                 android:paddingTop="3dp"
-                android:text="@string/name"
+                android:text="Moments: 0"
                 android:textSize="16sp" />
 
             <ImageView
@@ -124,7 +124,7 @@
                 android:paddingEnd="5dp"
                 android:paddingStart="10dp"
                 android:paddingTop="3dp"
-                android:text="@string/dinner"
+                android:text="Happy Points: 0"
                 android:textSize="16sp" />
 
         </LinearLayout>

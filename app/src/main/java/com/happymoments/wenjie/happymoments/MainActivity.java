@@ -432,7 +432,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == RC_SIGN_IN ) {
             if (resultCode == RESULT_OK) {
                 // sign-in success, set up the UI
-                Toast.makeText(this, "Signed in!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "You are successfully logged in!", Toast.LENGTH_SHORT).show();
             } else if (resultCode == RESULT_CANCELED) {
                 // sign-in canceled by user, finish activity, close app
                 Toast.makeText(this, "Sign in canceld!", Toast.LENGTH_SHORT).show();
@@ -455,7 +455,7 @@ public class MainActivity extends AppCompatActivity {
                  .addOnSuccessListener(MainActivity.this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
                      @Override
                      public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                          toastMessage("Upload done!");
+//                          toastMessage("Upload done!");
 //                                mPhotoUrl = taskSnapshot.getDownloadUrl();
                       }
                    });
